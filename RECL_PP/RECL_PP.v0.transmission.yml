@@ -1,0 +1,57 @@
+etapes:
+  - tache: genererPdf
+
+  - tache: traiterDocumentsSoumis
+    options:
+      desactiverEstampille: false
+
+  - tache: extraireQuestions
+
+  - tache: ajouterEstampille
+
+  - tache: envoyerCourriel
+    options:
+      gabarit: confirmationDemandeur
+      filtresDocuments:
+        - typeFiltre: tacheSource
+          valeurs: genererPdf
+        - typeFiltre: tacheSource
+          valeurs: traiterDocumentsSoumis
+
+  - tache: conserverFichier
+
+gabaritsCourriels:
+  - id: confirmationDemandeur
+    a:
+      tous:
+        - '{{donneesFormulaire.form.courriel}}'
+      unitaire:
+        - 'test@essais.mess.gouv.qc.ca'
+    nomExpediteur: "Ministère de la Sécurité publique"
+    objet: 'Confirmation de votre demande de réclamation no {{noConfirmation}}'
+    corps: |
+      <p>Bonjour {{donneesFormulaire.form.prenom}} {{donneesFormulaire.form.nomFamille}},</p>
+
+      <p>Votre demande de réclamation (Particulier – Propriétaire) a bien été reçue par le Ministère de la Sécurité publique.</p>
+
+      <p><strong>Numéro de confirmation :</strong> {{noConfirmation}}<br>
+      <strong>Date de transmission :</strong> {{FormatterDate dateTransmission "yyyy-MM-dd HH:mm"}}</p>
+
+      <p>Veuillez conserver ce numéro de confirmation pour toute communication avec le MSP.</p>
+
+      <p>Vos documents :</p>
+      <ul>
+        {{#listePJ}}
+        <li><a href="{{url}}">{{nomOriginal}}</a></li>
+        {{/listePJ}}
+      </ul>
+
+      <p>Si vous devez faire parvenir des documents supplémentaires :</p>
+      <ul>
+        <li><strong>Par courriel :</strong> aide.financiere@msp.gouv.qc.ca</li>
+        <li><strong>Par courrier :</strong> Direction générale du rétablissement, Ministère de la Sécurité publique, Tour du Saint-Laurent, 6e étage, 2525, boulevard Laurier, Québec (Québec) G1V 2L2</li>
+        <li><strong>Téléphone :</strong> 418 643-2433 (région de Québec) | 1 888 643-2433 (extérieur)</li>
+      </ul>
+
+      <p>Merci,<br>
+      Ministère de la Sécurité publique</p>

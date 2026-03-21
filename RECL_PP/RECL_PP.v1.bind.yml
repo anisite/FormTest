@@ -1,0 +1,233 @@
+config:
+  formulaire:
+    # systeme: 'XXXXX'   # À compléter avec l'ID système fourni par l'équipe FRW
+    type: RECL_PP
+  pdf:
+    rapetisserTexteTropLong: true
+    redirigerAnnexeTexteTroplong: true
+    pourcentageDepassementAnnexe: 20
+    verrouillerChampsPdf: true
+
+bundles:
+  - nomSortie: ReclamationParticulierProprietaire.pdf
+    templates:
+      - tplFormulaire
+
+templates:
+  - id: tplFormulaire
+    name: "Formulaire de réclamation – Particulier – Propriétaire"
+    gabarit:
+      fr: RECL_PP.v1.FR   # Gabarit PDF à placer dans Gabarits/RECL_PP.v1.FR.pdf
+    toujoursProduire: true
+
+bind:
+  tplFormulaire:
+    # ── Sinistre ──────────────────────────────────────────────────────────────
+    DateSinistre:
+      champs:
+        - dateSinistre
+      formule: '{dateSinistre:yyyy-MM-dd}'
+
+    TypeSinistre_Inondation:
+      champs:
+        - typeSinistre==Inondation
+
+    TypeSinistre_MouvementSol:
+      champs:
+        - typeSinistre==MouvementSol
+
+    TypeSinistre_TrembTerre:
+      champs:
+        - typeSinistre==TrembTerre
+
+    TypeSinistre_Verglas:
+      champs:
+        - typeSinistre==Verglas
+
+    TypeSinistre_Autre:
+      champs:
+        - typeSinistreAutre
+      formule: '{typeSinistreAutre}'
+
+    # ── Section 1 – Demandeur ─────────────────────────────────────────────────
+    Civilite:
+      champs:
+        - civilite
+
+    Prenom:
+      champs:
+        - prenom
+
+    NomFamille:
+      champs:
+        - nomFamille
+
+    DateNaissance:
+      champs:
+        - dateNaissance
+      formule: '{dateNaissance:yyyy-MM-dd}'
+
+    TelPrincipal:
+      champs:
+        - telPrincipal
+
+    PostePrincipal:
+      champs:
+        - postePrincipal
+
+    TelAutre:
+      champs:
+        - telAutre
+
+    Courriel:
+      champs:
+        - courriel
+
+    AdresseResidence_NoCivique:
+      champs:
+        - adresseResidence.0.NoCivique
+
+    AdresseResidence_Rue:
+      champs:
+        - adresseResidence.0.Rue
+
+    AdresseResidence_Municipalite:
+      champs:
+        - adresseResidence.0.Municipalite
+
+    AdresseResidence_CodePostal:
+      champs:
+        - adresseResidence.0.CodePostal
+
+    # ── Section 3 – Assurances ────────────────────────────────────────────────
+    AssuranceHabitation_Oui:
+      champs:
+        - assuranceHabitation==true
+
+    AssuranceHabitation_Non:
+      champs:
+        - assuranceHabitation==false
+
+    # ── Section 4 – Faillite ──────────────────────────────────────────────────
+    EnFaillite_Oui:
+      champs:
+        - enFaillite==true
+
+    EnFaillite_Non:
+      champs:
+        - enFaillite==false
+
+    # ── Section 5 – Assistance financière ────────────────────────────────────
+    MontantAssureur:
+      champs:
+        - montantAssureur
+
+    MontantBienfaisance:
+      champs:
+        - montantBienfaisance
+
+    MontantMinistere:
+      champs:
+        - montantMinistere
+
+    MontantAutre:
+      champs:
+        - montantAutre
+
+    ProvenanceAutre:
+      champs:
+        - provenanceAutre
+
+    Poursuites_Oui:
+      champs:
+        - poursuites==true
+
+    Poursuites_Non:
+      champs:
+        - poursuites==false
+
+    # ── Section 6 – Résidence ─────────────────────────────────────────────────
+    AnneeConstruction:
+      champs:
+        - anneeConstruction
+
+    DimensionsResidence:
+      champs:
+        - largeurResidence
+        - longueurResidence
+        - uniteMesureResidence
+      formule: '{largeurResidence} x {longueurResidence} {uniteMesureResidence}'
+
+    ZoneInondation:
+      champs:
+        - zoneInondation
+
+    TypeFondations:
+      champs:
+        - typeFondations
+
+    # ── Section 8B – Biens meubles (échantillon des champs principaux) ────────
+    BM_Cuisiniere:
+      champs:
+        - bm_cuisiniere
+
+    BM_Refrigerateur:
+      champs:
+        - bm_refrigerateur
+
+    BM_LaveVaisselle:
+      champs:
+        - bm_laveVaisselle
+
+    BM_TableChaises:
+      champs:
+        - bm_tableChaises
+
+    BM_Laveuse:
+      champs:
+        - bm_laveuse
+
+    BM_Secheuse:
+      champs:
+        - bm_secheuse
+
+    BM_Vetements:
+      champs:
+        - bm_vetements
+
+    # ── Section 8C – Mesures préventives ─────────────────────────────────────
+    MesuresPreventives_Oui:
+      champs:
+        - mesuresPreventives==true
+
+    # ── Section 8D – Hébergement ──────────────────────────────────────────────
+    EvacuationResidence_Oui:
+      champs:
+        - evacuationResidence==true
+
+    EvacuationResidence_Non:
+      champs:
+        - evacuationResidence==false
+
+    # ── Section 8E – Déménagement ─────────────────────────────────────────────
+    CoutDemenagement:
+      champs:
+        - coutDemenagement
+
+    # ── Section 8F – Travaux ──────────────────────────────────────────────────
+    CoutTravauxEntrepreneur:
+      champs:
+        - coutTravauxEntrepreneur
+
+    CoutTravauxTemporaires:
+      champs:
+        - coutTravauxTemporaires
+
+    # ── Section 8G – Chemin d'accès ───────────────────────────────────────────
+    CheminAccesEndommage_Oui:
+      champs:
+        - cheminAccesEndommage==true
+
+    CoutCheminAcces:
+      champs:
+        - coutCheminAcces
