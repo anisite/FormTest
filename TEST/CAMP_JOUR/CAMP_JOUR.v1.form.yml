@@ -1,0 +1,275 @@
+# yaml-language-server: $schema=https://formulaires.it.mtess.gouv.qc.ca/api/v1/SIS/ObtenirSchema/form
+
+config:
+  securite:
+    accesAnonyme: true
+
+form:
+  title:
+    fr: "Inscription au camp de jour"
+
+  sectionsGroup:
+
+    # ─── Section 1 – Renseignements sur l'enfant ──────────────────────────────
+    - sectionGroup:
+        fr: "1 – Renseignements sur l'enfant"
+      classes: utd-icone-svg utilisateur
+      sections:
+        - section:
+            fr: "Identité de l'enfant"
+          id: sectionEnfant
+          components:
+            - type: inline
+              components:
+                - type: text
+                  name: enfantPrenom
+                  label:
+                    fr: Prénom
+                - type: text
+                  name: enfantNom
+                  label:
+                    fr: Nom de famille
+            - type: date
+              name: enfantDateNaissance
+              label:
+                fr: Date de naissance
+              max: "{{today}}"
+            - type: radio
+              name: enfantSexe
+              label:
+                fr: Sexe
+              options:
+                F:
+                  fr: Féminin
+                M:
+                  fr: Masculin
+                A:
+                  fr: Autre / Non précisé
+            - type: text
+              name: enfantAllergies
+              label:
+                fr: "Allergies ou conditions médicales particulières"
+              validations:
+                optional:
+            - type: textarea
+              name: enfantBesoinsSpeciaux
+              label:
+                fr: "Besoins particuliers ou informations supplémentaires"
+              validations:
+                optional:
+
+    # ─── Section 2 – Choix du camp ────────────────────────────────────────────
+    - sectionGroup:
+        fr: "2 – Choix du camp"
+      classes: utd-icone-svg calendrier
+      sections:
+        - section:
+            fr: "Sessions et activités"
+          id: sectionCamp
+          components:
+            - type: radio
+              name: campSession
+              label:
+                fr: Session souhaitée
+              options:
+                S1:
+                  fr: "Session 1 — 23 juin au 4 juillet"
+                S2:
+                  fr: "Session 2 — 7 au 18 juillet"
+                S3:
+                  fr: "Session 3 — 21 juillet au 1er août"
+                S4:
+                  fr: "Session 4 — 4 au 15 août"
+            - type: checkbox
+              name: campActivites
+              label:
+                fr: "Activités préférées (cochez jusqu'à 3)"
+              validations:
+                optional:
+              options:
+                Natation:
+                  fr: Natation
+                Arts:
+                  fr: Arts et bricolage
+                Sports:
+                  fr: Sports collectifs
+                Nature:
+                  fr: Nature et plein air
+                Theatre:
+                  fr: Théâtre et expression
+                Robotique:
+                  fr: Robotique et sciences
+                Equitation:
+                  fr: Équitation
+            - type: radio
+              name: campJournee
+              label:
+                fr: Type de journée
+              options:
+                Complete:
+                  fr: "Journée complète (8 h à 17 h)"
+                Demie:
+                  fr: "Demi-journée (8 h à 12 h)"
+
+    # ─── Section 3 – Renseignements sur le parent / tuteur ───────────────────
+    - sectionGroup:
+        fr: "3 – Renseignements sur le parent ou tuteur"
+      classes: utd-icone-svg utilisateurs2
+      sections:
+        - section:
+            fr: "Parent ou tuteur légal"
+          id: sectionParent
+          components:
+            - type: inline
+              components:
+                - type: text
+                  name: parentPrenom
+                  label:
+                    fr: Prénom
+                - type: text
+                  name: parentNom
+                  label:
+                    fr: Nom de famille
+            - type: text
+              name: parentCourriel
+              label:
+                fr: Courriel
+              validations:
+                email:
+            - type: tel
+              name: parentTelephone
+              label:
+                fr: "Téléphone principal"
+            - type: tel
+              name: parentTelephoneAlt
+              label:
+                fr: "Téléphone alternatif"
+              validations:
+                optional:
+
+            - type: inline
+              components:
+                - type: text
+                  name: parentAdresse
+                  label:
+                    fr: Adresse
+                - type: text
+                  name: parentVille
+                  label:
+                    fr: Ville
+                - type: text
+                  name: parentCodePostal
+                  label:
+                    fr: Code postal
+
+        - section:
+            fr: "Personne à contacter en cas d'urgence"
+          id: sectionUrgence
+          components:
+            - type: inline
+              components:
+                - type: text
+                  name: urgencePrenom
+                  label:
+                    fr: Prénom
+                - type: text
+                  name: urgenceNom
+                  label:
+                    fr: Nom de famille
+            - type: text
+              name: urgenceLien
+              label:
+                fr: "Lien avec l'enfant"
+            - type: tel
+              name: urgenceTelephone
+              label:
+                fr: Téléphone
+
+    # ─── Section 4 – Autorisations ────────────────────────────────────────────
+    - sectionGroup:
+        fr: "4 – Autorisations"
+      classes: utd-icone-svg checklist
+      sections:
+        - section:
+            fr: Autorisations parentales
+          id: sectionAutorisations
+          components:
+            - type: radio
+              name: autorisationPhoto
+              label:
+                fr: "J'autorise la prise de photos et vidéos de mon enfant à des fins de communication."
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: radio
+              name: autorisationSorties
+              label:
+                fr: "J'autorise mon enfant à participer aux sorties organisées par le camp."
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: radio
+              name: autorisationPremiersSoins
+              label:
+                fr: "J'autorise le personnel du camp à prodiguer les premiers soins à mon enfant si nécessaire."
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: checkbox
+              name: declarationParent
+              label:
+                fr: "Déclaration — cocher pour confirmer"
+              options:
+                d1:
+                  fr: "Je certifie que les renseignements fournis sont exacts et complets."
+                d2:
+                  fr: "J'ai pris connaissance du règlement du camp de jour et j'accepte de le respecter."
+              validations:
+                min: 2
+
+    # ─── Section 11 – Confirmation et révision ───────────────────────────────
+    - sectionGroup:
+        fr: "5 – Confirmation et transmission"
+      classes: utd-icone-svg recu
+      sections:
+        - section:
+            fr: Confirmation
+          id: sectionConfirmation
+          components:
+            - type: avis
+              classes: information
+              text:
+                fr: |
+                  <p>En transmettant ce formulaire, vous confirmez que les renseignements fournis sont exacts et complets.</p>
+                  <p>Une confirmation vous sera envoyée par courriel suite à la réception de votre inscription.</p>
+        - section:
+            fr: Révision
+          id: revision
+          cacherTexteExplicatifChampsObligatoires: true
+          components:
+            - type: dynamic
+              tag: div
+              v-if: "this.val('EtatRevision') === 'initial'"
+              classes: texte-revision
+              text:
+                fr: |
+                  Cliquez sur le bouton « Valider » afin de vérifier que le formulaire est rempli correctement avant de le transmettre.
+            - type: dynamic
+              tag: div
+              v-if: "this.val('EtatRevision') === 'sans-erreur'"
+              classes: texte-revision
+              text:
+                fr: Tout est en ordre ! Vous pouvez transmettre votre inscription.
+            - type: dynamic
+              tag: div
+              v-if: "this.val('EtatRevision') === 'avec-erreur'"
+              classes: texte-revision
+              text:
+                fr: |
+                  Des erreurs ont été détectées. Veuillez les corriger avant de transmettre votre formulaire.

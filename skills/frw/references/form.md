@@ -107,6 +107,8 @@ form:
 `homme-femme`, `nouveautes`, `parametres`, `recu`, `utilisateur`,
 `utilisateurs2`, `utilisateurs3`, `repere-carte`, `services-ligne`
 
+> *Attention il ne faut pas en inventer ni les traduires
+
 ---
 
 ## 3. Composants d'affichage
@@ -515,10 +517,12 @@ form:
 
 ## 5. Validation
 
-> **Important :** La clé s'appelle `validations:` (avec s). `required` est **implicite** sur tous les champs — ne pas l'ajouter sauf pour le documenter explicitement. Pour rendre un champ optionnel, utiliser `optional:`.
+> **Important :** La clé s'appelle `validations:` (avec s). `required` est **implicite** sur tous les champs — ne pas l'ajouter sauf pour le documenter explicitement. Pour rendre un champ optionnel, utiliser `optional:` sous `validations:`.
+
 
 ```yaml
 validations:
+#Ceci est la liste complète il n'existe pas d'autres validations dans FRW.
   required:                             # Implicite — tous les champs sont obligatoires par défaut
   optional:                             # Rend le champ optionnel (annule le required implicite)
   email:                                # Format courriel
