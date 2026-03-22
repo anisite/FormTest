@@ -1,0 +1,99 @@
+workflows:
+  - id: wfApprobation
+    roles:
+      - id: initiateur
+        label:
+          fr: Demandeur
+      - id: approbateur
+        label:
+          fr: Approbateur
+
+    etapes:
+
+      # ── Étape 1 : soumission initiale par le demandeur ────────────────────
+      - id: initial
+        evenements:
+          quandQuelqunTransmet:
+            - tache: interventionParticipant
+              options:
+                role: approbateur
+                vers: validation
+                chargerCourrielsWorkflow: true
+                modeBoutonTesterTransmission: simuler
+            - tache: interventionParticipant
+              options:
+                role: initiateur
+                chargerCourrielsWorkflow: true
+                modeBoutonTesterTransmission: simuler
+            - tache: envoyerCourrielParticipant
+              options:
+                role: approbateur
+                gabarit: demandeApprobation
+            - tache: expirerFormulaire
+              options:
+                gabarit: formExpire
+                delaiExpirationHeures: 72
+                langue: fr
+
+      # ── Étape 2 : décision de l'approbateur ──────────────────────────────
+      - id: validation
+        evenements:
+          quandLeDernierTransmet:
+            - tache: interventionParticipant
+              options:
+                role: initiateur
+                vers: transmission
+                chargerCourrielsWorkflow: true
+                modeBoutonTesterTransmission: simuler
+            - tache: envoyerCourrielParticipant
+              options:
+                role: initiateur
+                gabarit: retourDemandeur
+
+      # ── Étape finale : transmission ───────────────────────────────────────
+      - id: transmission
+        evenements:
+          quandQuelqunTransmet:
+            - tache: envoyerCourrielParticipant
+              options:
+                role: initiateur
+                gabarit: confirmationFinale
+
+gabaritsCourriels:
+  - id: demandeApprobation
+    a:
+      tous:
+        - '{{wf.participant.courriel}}'
+    objet: 'Une demande requiert votre approbation'
+    corps: |
+      <p>Bonjour,</p>
+      <p>Une nouvelle demande a été soumise et requiert votre approbation.</p>
+      <p><strong>Demandeur :</strong> {{demandeurPrenom}} {{demandeurNom}}</p>
+      <p><strong>Titre :</strong> {{titredemande}}</p>
+      <p>Veuillez <a href="{{wf.lien}}">cliquer ici</a> pour accéder au formulaire.</p>
+
+  - id: retourDemandeur
+    a:
+      tous:
+        - '{{wf.participant.courriel}}'
+    objet: 'Votre demande a été traitée'
+    corps: |
+      <p>Bonjour,</p>
+      <p>Votre demande a été traitée par l'approbateur.</p>
+      <p>Veuillez <a href="{{wf.lien}}">cliquer ici</a> pour consulter la décision.</p>
+
+  - id: confirmationFinale
+    a:
+      tous:
+        - '{{wf.participant.courriel}}'
+    objet: 'Demande transmise avec succès'
+    corps: |
+      <p>Bonjour,</p>
+      <p>Votre demande a été transmise avec succès.</p>
+
+  - id: formExpire
+    a:
+      tous:
+        - '{{wf.participant.courriel}}'
+    objet: 'Le formulaire a expiré'
+    corps: <p>Le délai de réponse est dépassé. Veuillez soumettre une nouvelle demande.</p>

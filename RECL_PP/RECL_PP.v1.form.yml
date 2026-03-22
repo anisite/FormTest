@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://formulaires.it.mtess.gouv.qc.ca/api/v1/SIS/ObtenirSchema/form
-# debug: langue=auto, showAll=true
+# debug: langue=auto, showAll=false
 
 config:
   securite:
@@ -116,7 +116,7 @@ form:
 
     # ─── Section 1 – Identité du demandeur ───────────────────────────────────
     - sectionGroup:
-        fr: "1 – Renseignements sur l'identité du demandeur"
+        fr: "Renseignements sur l'identité du demandeur"
       classes: icone user
       sections:
         - section:
@@ -194,7 +194,7 @@ form:
 
     # ─── Section 2 – Autres occupants permanents ─────────────────────────────
     - sectionGroup:
-        fr: "2 – Renseignements sur les autres occupants permanents"
+        fr: "Renseignements sur les autres occupants permanents"
       classes: icone user
       sections:
         - section:
@@ -257,7 +257,7 @@ form:
 
     # ─── Section 3 – Assurances ───────────────────────────────────────────────
     - sectionGroup:
-        fr: "3 – Assurances"
+        fr: Assurances
       classes: icone clipboard-check
       sections:
         - section:
@@ -296,7 +296,7 @@ form:
 
     # ─── Section 4 – Faillite ────────────────────────────────────────────────
     - sectionGroup:
-        fr: "4 – Faillite"
+        fr: Faillite
       classes: icone cash-dollar
       sections:
         - section:
@@ -323,7 +323,7 @@ form:
 
     # ─── Section 5 – Assistance financière ───────────────────────────────────
     - sectionGroup:
-        fr: "5 – Assistance financière, obtenue ou à recevoir, en lien avec le sinistre"
+        fr: "Assistance financière, obtenue ou à recevoir, en lien avec le sinistre"
       classes: icone cash-dollar
       sections:
         - section:
@@ -388,7 +388,7 @@ form:
 
     # ─── Section 6 – Renseignements sur la résidence ─────────────────────────
     - sectionGroup:
-        fr: "6 – Renseignements relatifs à la résidence"
+        fr: "Renseignements relatifs à la résidence"
       classes: icone user
       sections:
         - section:
@@ -492,7 +492,7 @@ form:
 
     # ─── Section 7 – Renseignements relatifs à l'inondation ──────────────────
     - sectionGroup:
-        fr: "7 – Renseignements relatifs à l'inondation"
+        fr: "Renseignements relatifs à l'inondation"
       classes: icone register
       v-if: "this.val('typeSinistre') && this.val('typeSinistre').includes('Inondation')"
       sections:
@@ -620,7 +620,7 @@ form:
 
     # ─── Section 8 – Réclamation ──────────────────────────────────────────────
     - sectionGroup:
-        fr: "8 – Réclamation"
+        fr: Réclamation
       classes: icone cash-dollar
       sections:
 
@@ -2130,7 +2130,7 @@ form:
 
     # ─── Section 9 – Consentements ────────────────────────────────────────────
     - sectionGroup:
-        fr: "9 – Consentements du demandeur et des copropriétaires"
+        fr: "Consentements du demandeur et des copropriétaires"
       classes: icone clipboard-check
       sections:
         - section:
@@ -2248,7 +2248,7 @@ form:
 
     # ─── Section 10 – Engagements ─────────────────────────────────────────────
     - sectionGroup:
-        fr: "10 – Engagements et déclarations"
+        fr: "Engagements et déclarations"
       classes: icone clipboard-check
       sections:
         - section:
@@ -2362,7 +2362,7 @@ form:
 
     # ─── Section 11 – Confirmation de transmission ───────────────────────────
     - sectionGroup:
-        fr: "11 – Confirmation et transmission"
+        fr: "Confirmation et transmission"
       classes: icone clipboard-check
       sections:
         - section:

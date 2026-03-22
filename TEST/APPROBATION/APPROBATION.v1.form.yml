@@ -1,0 +1,159 @@
+# yaml-language-server: $schema=https://formulaires.it.mtess.gouv.qc.ca/api/v1/SIS/ObtenirSchema/form
+
+config:
+  securite:
+    accesAnonyme: true
+  aiguillage:
+    choix:
+      - mode: workflow
+        workflow: wfApprobation
+
+form:
+  title:
+    fr: "Demande d'approbation"
+
+  sectionsGroup: 
+
+    # ─── Suivi des étapes ─────────────────────────────────────────────────────
+    - sectionGroup:
+        fr: Suivi
+      classes: utd-icone-svg checklist
+      sections:
+        - section:
+            fr: Suivi des étapes
+          id: sectionSuivi
+          cacherTexteExplicatifChampsObligatoires: true
+          components:
+            - type: suiviEtapesWF
+
+    # ─── Section 1 – Demande (étape initiale) ─────────────────────────────────
+    - sectionGroup:
+        fr: "1 – Demande"
+      classes: utd-icone-svg utilisateur
+      filtreEtapes:
+        - initial:
+      sections:
+        - section:
+            fr: Informations sur la demande
+          id: sectionDemande
+          filtreEtapes:
+            - initial:
+          components:
+            - type: inline
+              components:
+                - type: text
+                  name: demandeurPrenom
+                  label:
+                    fr: Prénom
+                - type: text
+                  name: demandeurNom
+                  label:
+                    fr: Nom de famille
+            - type: text
+              name: demandeurCourriel
+              label:
+                fr: Courriel
+              validations:
+                email:
+            - type: text
+              name: titredemande
+              label:
+                fr: "Titre de la demande"
+            - type: textarea
+              name: descriptionDemande
+              label:
+                fr: "Description de la demande"
+            - type: date
+              name: dateSouhaitee
+              label:
+                fr: "Date souhaitée"
+              min: "{{today}}"
+
+        - section:
+            fr: "Approbateur"
+          id: sectionApprobateur
+          filtreEtapes:
+            - initial:
+          components:
+            - type: avis
+              classes: information
+              text:
+                fr: <p>Indiquez le courriel de la personne qui doit approuver votre demande.</p>
+            - type: courrielWorkflow
+              name: courrielApprobateur
+              role: approbateur
+              label:
+                fr: "Courriel de l'approbateur"
+
+    # ─── Section 2 – Approbation (étape validateur) ───────────────────────────
+    - sectionGroup:
+        fr: "2 – Approbation"
+      classes: utd-icone-svg checklist
+      filtreEtapes:
+        - validation:
+      sections:
+        - section:
+            fr: "Décision de l'approbateur"
+          id: sectionApprobation
+          filtreEtapes:
+            - validation:
+          components:
+            - type: avis
+              classes: information
+              text:
+                fr: <p>Veuillez réviser la demande et indiquer votre décision.</p>
+            - type: radio
+              name: decision
+              label:
+                fr: Décision
+              options:
+                Approuve:
+                  fr: Approuvée 
+                Refuse:
+                  fr: Refusée
+            - type: textarea
+              name: commentaireApprobateur
+              label:
+                fr: Commentaires
+              validations:
+                optional:
+
+    # ─── Confirmation et révision ─────────────────────────────────────────────
+    - sectionGroup:
+        fr: Confirmation
+      classes: utd-icone-svg recu
+      sections:
+        - section:
+            fr: Confirmation
+          id: sectionConfirmation
+          cacherTexteExplicatifChampsObligatoires: true
+          components:
+            - type: avis
+              classes: information
+              text:
+                fr: <p>En transmettant ce formulaire, vous confirmez que les renseignements fournis sont exacts.</p>
+        - section:
+            fr: Révision
+          id: revision
+          cacherTexteExplicatifChampsObligatoires: true
+          components:
+            - type: dynamic
+              tag: div
+              v-if: "this.val('EtatRevision') === 'initial'"
+              classes: texte-revision
+              text:
+                fr: |
+                  Cliquez sur le bouton « Valider » afin de vérifier que le formulaire est rempli correctement avant de le transmettre.
+            - type: dynamic
+              tag: div
+              v-if: "this.val('EtatRevision') === 'sans-erreur'"
+              classes: texte-revision
+              text:
+                fr: Tout est en ordre ! Vous pouvez transmettre votre formulaire.
+            - type: dynamic
+              tag: div
+              v-if: "this.val('EtatRevision') === 'avec-erreur'"
+              classes: texte-revision
+              text:
+                fr: |
+                  Des erreurs ont été détectées. Veuillez les corriger avant de transmettre votre formulaire.

@@ -1,0 +1,2645 @@
+# yaml-language-server: $schema=https://formulaires.it.mtess.gouv.qc.ca/api/v1/SIS/ObtenirSchema/form
+
+config:
+  securite:
+    accesAnonyme: true
+  formulaireUnilingue: true
+  confirmationTransmission:
+    texteSupplementaire:
+      fr: |
+        <p>Votre demande de réclamation a été transmise avec succès. Conservez votre numéro de confirmation.</p>
+        <p>Veuillez faire parvenir les documents requis à :</p>
+        <ul>
+          <li><strong>Par courrier :</strong> Direction générale du rétablissement, Ministère de la Sécurité publique, Tour du Saint-Laurent, 6e étage, 2525, boulevard Laurier, Québec (Québec) G1V 2L2</li>
+          <li><strong>Par courriel :</strong> aide.financiere@msp.gouv.qc.ca</li>
+        </ul>
+  aiguillage:
+    choix:
+      - mode: confirmation
+  domaines:
+    nombreCoproprietaires:
+      Aucun:
+        label:
+          fr: Aucun copropriétaire
+      Un:
+        label:
+          fr: 1 copropriétaire
+      Deux:
+        label:
+          fr: 2 copropriétaires
+      Trois:
+        label:
+          fr: 3 copropriétaires
+    emplacementBien:
+      SousSol:
+        label:
+          fr: Sous-sol
+      RDC:
+        label:
+          fr: "Rez-de-chaussée"
+      LesDeux:
+        label:
+          fr: "Sous-sol et rez-de-chaussée"
+      GarCab:
+        label:
+          fr: "Garage / Cabanon"
+    typesPieces:
+      Salon:
+        label:
+          fr: Salon
+      SalleFamiliale:
+        label:
+          fr: Salle familiale
+      Cuisine:
+        label:
+          fr: Cuisine
+      SalleAManger:
+        label:
+          fr: Salle à manger
+      SalleDeBain:
+        label:
+          fr: Salle de bain
+      SalleDeau:
+        label:
+          fr: "Salle d'eau"
+      SalleDeLavage:
+        label:
+          fr: Salle de lavage
+      Chambre1:
+        label:
+          fr: Chambre 1
+      Chambre2:
+        label:
+          fr: Chambre 2
+      Chambre3:
+        label:
+          fr: Chambre 3
+      Chambre4:
+        label:
+          fr: Chambre 4
+      Bureau:
+        label:
+          fr: Bureau
+      Autre:
+        label:
+          fr: Autre
+
+form:
+  title:
+    fr: "Formulaire de réclamation – Particulier – Propriétaire"
+
+  sectionsGroup:
+
+    # ─── Renseignements généraux ───────────────────────────────────────────────
+    - sectionGroup:
+        fr: Renseignements généraux
+      classes: icone register
+      sections:
+        - section:
+            fr: À lire avant de commencer
+          id: sectionIntro
+          cacherTexteExplicatifChampsObligatoires: true
+          components:
+            - type: dynamic
+              tag: div
+              classes: page-texte
+              text:
+                fr: |
+                  <p>Les programmes du ministère de la Sécurité publique (MSP) visent notamment à indemniser et à aider financièrement les particuliers qui ont pris des mesures préventives temporaires, dont les biens ont subi des dommages lors d'un sinistre ou dont la résidence principale est menacée par une imminence de submersion, d'érosion ou de mouvement de sol.</p>
+                  <p>Ces dommages doivent être relatifs à la <strong>résidence principale</strong> du particulier, dont il est propriétaire, et être causés par un sinistre admissible comme des inondations occasionnées par des débordements de cours d'eau, l'érosion de berges, la submersion, les glissements de terrain et les tremblements de terre. On entend par « résidence principale » le lieu où un particulier effectue l'ensemble de ses activités quotidiennes sur une base annuelle (p. ex., un logement, une maison unifamiliale, un duplex, une maison jumelée, une maison en rangée ou un appartement en copropriété).</p>
+                  <p>Pour faire une demande d'assistance financière, le ou les propriétaires occupants inscrits sur l'évaluation municipale en vigueur au moment du sinistre doivent remplir chacune des sections du présent formulaire, lire attentivement les sections 9 et 10, cocher chacun des énoncés, puis transmettre le formulaire et tous les documents demandés.</p>
+                  <p>Au besoin, communiquez avec le MSP au :<br>
+                  <strong>418 643-AIDE (2433)</strong> (région de Québec)<br>
+                  <strong>1 888 643-AIDE (2433)</strong> (extérieur)</p>
+                  <p><strong>La demande d'assistance financière doit être expédiée dans les 12 mois</strong> suivant la date de la mise en œuvre du programme. Pour vérifier cette date, consultez <a href="https://www.quebec.ca/sinistresadmissibles">www.quebec.ca/sinistresadmissibles</a>.</p>
+            - type: avis
+              classes: information
+              text:
+                fr: |
+                  <p><strong>Documents à joindre</strong></p>
+                  <ul>
+                    <li>Une preuve de l'adresse de résidence des occupants permanents en vigueur au moment du sinistre (p. ex., permis de conduire, bulletin scolaire d'un enfant, avis de cotisation de Revenu Québec ou de l'Agence du revenu du Canada ou tout autre document provenant du gouvernement provincial ou fédéral et daté d'avant le sinistre)</li>
+                    <li>Une copie de l'avis d'évaluation municipale de la résidence en vigueur au moment du sinistre</li>
+                    <li>Une copie de la police d'assurance habitation en vigueur au moment du sinistre, y compris les avenants et les exclusions. En l'absence d'une telle assurance, fournir une déclaration signée à cet effet par un commissaire à l'assermentation</li>
+                    <li>Une copie de la réponse écrite de votre assureur pour la couverture du sinistre</li>
+                    <li>Une copie des factures ou les estimations pour la réparation ou le remplacement des biens endommagés, lorsque requis</li>
+                    <li>Des photographies et des vidéos des dommages, si possible</li>
+                    <li>Un spécimen de chèque, si possible</li>
+                  </ul>
+
+    # ─── Sinistre ──────────────────────────────────────────────────────────────
+    - sectionGroup:
+        fr: Sinistre
+      classes: icone register
+      sections:
+        - section:
+            fr: Informations sur le sinistre
+          id: sectionSinistre
+          components:
+            - type: avis
+              classes: information
+              text:
+                fr: "<p>Lors d'une inondation, la date du sinistre correspond généralement à la date où l'eau a commencé à s'accumuler sur votre terrain ou dans votre résidence.</p>"
+            - type: date
+              name: dateSinistre
+              label:
+                fr: Date du sinistre
+              max: "{{today}}"
+            - type: checkbox
+              name: typeSinistre
+              label:
+                fr: Type de sinistre
+              options:
+                Inondation:
+                  fr: Inondation
+                MouvementSol:
+                  fr: "Mouvement de sol, érosion ou submersion"
+                TrembTerre:
+                  fr: Tremblement de terre
+                Verglas:
+                  fr: Verglas
+                Autre:
+                  fr: Autre
+            - type: text
+              name: typeSinistreAutre
+              label:
+                fr: "Précisez le type de sinistre"
+              v-if: "this.val('typeSinistre') && this.val('typeSinistre').includes('Autre')"
+
+    # ─── Section 1 – Identité du demandeur ────────────────────────────────────
+    - sectionGroup:
+        fr: "Renseignements sur l'identité du demandeur"
+      classes: icone user
+      sections:
+        - section:
+            fr: "Identité du demandeur"
+          id: sectionDemandeur
+          components:
+            - type: avis
+              classes: information
+              text:
+                fr: "<p>Vous devez être le propriétaire ou un des propriétaires inscrits sur l'avis d'évaluation municipale de la résidence principale endommagée.</p>"
+            - type: radio
+              name: civilite
+              label:
+                fr: Civilité
+              options:
+                Madame:
+                  fr: Madame
+                Monsieur:
+                  fr: Monsieur
+            - type: inline
+              components:
+                - type: text
+                  name: prenom
+                  label:
+                    fr: Prénom
+                - type: text
+                  name: nomFamille
+                  label:
+                    fr: Nom
+            - type: date
+              name: dateNaissance
+              label:
+                fr: Date de naissance
+              max: "{{today}}"
+            - type: inline
+              components:
+                - type: tel
+                  name: telephonePrincipal
+                  label:
+                    fr: "N° tél. (principal)"
+                - type: tel
+                  name: telephoneAutre
+                  label:
+                    fr: "N° tél. (autre)"
+                  validations:
+                    optional:
+            - type: text
+              name: courriel
+              label:
+                fr: Adresse courriel
+              validations:
+                email:
+                optional:
+
+        - section:
+            fr: "Adresse de la résidence principale endommagée"
+          id: sectionAdresseResidence
+          components:
+            - type: inline
+              components:
+                - type: text
+                  name: adresseResidence
+                  label:
+                    fr: Adresse
+                - type: text
+                  name: casePostaleResidence
+                  label:
+                    fr: "Case postale"
+                  validations:
+                    optional:
+            - type: inline
+              components:
+                - type: text
+                  name: municipaliteResidence
+                  label:
+                    fr: Municipalité
+                - type: text
+                  name: codePostalResidence
+                  label:
+                    fr: Code postal
+            - type: customfileUlterieure
+              name: docEvaluationMunicipale
+              label:
+                fr: "Copie de l'avis d'évaluation municipale en vigueur au moment du sinistre"
+            - type: radio
+              name: adresseCorrespondanceDifferente
+              label:
+                fr: "Votre adresse de correspondance est-elle différente de celle de la résidence principale endommagée ?"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+
+        - section:
+            fr: "Adresse de correspondance"
+          id: sectionAdresseCorrespondance
+          v-if: "this.val('adresseCorrespondanceDifferente') === 'Oui'"
+          components:
+            - type: inline
+              components:
+                - type: text
+                  name: adresseCorrespondance
+                  label:
+                    fr: Adresse
+                - type: text
+                  name: casePostaleCorrespondance
+                  label:
+                    fr: "Case postale"
+                  validations:
+                    optional:
+            - type: inline
+              components:
+                - type: text
+                  name: municipaliteCorrespondance
+                  label:
+                    fr: Municipalité
+                - type: text
+                  name: codePostalCorrespondance
+                  label:
+                    fr: Code postal
+
+    # ─── Section 2 – Autres occupants permanents ──────────────────────────────
+    - sectionGroup:
+        fr: "Renseignements sur les autres occupants permanents et mandataires"
+      classes: icone user
+      sections:
+        - section:
+            fr: "Autres occupants et mandataires"
+          id: sectionOccupants
+          components:
+            - type: dynamic
+              tag: div
+              classes: page-texte
+              text:
+                fr: |
+                  <p>Énumérez tous les autres occupants permanents qui habitent dans votre résidence. Une preuve de résidence est demandée pour chacun d'eux. Énumérez également les personnes que vous avez mandatées pour agir en votre nom dans le cadre de cette demande d'assistance financière.</p>
+                  <p>En cas de séparation ou de divorce, votre enfant pourra être admissible, peu importe le lieu de sa résidence principale, si vous prouvez qu'il habite effectivement chez chacun de ses deux parents. Le jugement de la cour ou un document de médiation sera alors exigé.</p>
+                  <p>La preuve de résidence doit contenir le nom et l'adresse de l'occupant et elle doit être en vigueur ou dater d'au plus un an avant le sinistre.</p>
+            - type: radio
+              name: autresOccupantsPresents
+              label:
+                fr: "Y a-t-il d'autres occupants permanents ou mandataires dans votre résidence ?"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: repeatableGroup
+              name: autresOccupants
+              label:
+                fr: "Autres occupants et mandataires"
+              v-if: "this.val('autresOccupantsPresents') === 'Oui'"
+              repeatable: true
+              minimum: 0
+              components:
+                - type: inline
+                  components:
+                    - type: text
+                      name: occupantPrenom
+                      label:
+                        fr: Prénom
+                    - type: text
+                      name: occupantNom
+                      label:
+                        fr: Nom
+                - type: date
+                  name: occupantDateNaissance
+                  label:
+                    fr: Date de naissance
+                  max: "{{today}}"
+                - type: radio
+                  name: occupantCoproprietaire
+                  label:
+                    fr: Copropriétaire ?
+                  options:
+                    Oui:
+                      fr: Oui
+                    Non:
+                      fr: Non
+                - type: text
+                  name: occupantLien
+                  label:
+                    fr: "Lien de parenté ou autre"
+                  validations:
+                    optional:
+                - type: customfileUlterieure
+                  name: occupantPreuveResidence
+                  label:
+                    fr: "Preuve de résidence"
+
+    # ─── Section 3 – Assurances ────────────────────────────────────────────────
+    - sectionGroup:
+        fr: Assurances
+      classes: icone cash-dollar
+      sections:
+        - section:
+            fr: "3.1 – Assurance habitation"
+          id: sectionAssurances
+          components:
+            - type: radio
+              name: assuranceHabitation
+              label:
+                fr: "Aviez-vous une assurance habitation en vigueur au moment du sinistre ?"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: avis
+              classes: information
+              v-if: "this.val('assuranceHabitation') === 'Oui'"
+              text:
+                fr: "<p>Veuillez joindre une copie de votre police d'assurance habitation et la réponse écrite de votre assureur pour la couverture du risque.</p>"
+            - type: customfileUlterieure
+              name: docPoliceAssurance
+              label:
+                fr: "Police d'assurance habitation et réponse de l'assureur"
+              v-if: "this.val('assuranceHabitation') === 'Oui'"
+            - type: avis
+              classes: information
+              v-if: "this.val('assuranceHabitation') === 'Non'"
+              text:
+                fr: "<p>Veuillez joindre une déclaration sous serment certifiant que vous ne possédiez pas d'assurance habitation.</p>"
+            - type: customfileUlterieure
+              name: docDeclarationSousSerment
+              label:
+                fr: "Déclaration sous serment certifiant l'absence d'assurance habitation"
+              v-if: "this.val('assuranceHabitation') === 'Non'"
+
+    # ─── Section 4 – Faillite ─────────────────────────────────────────────────
+    - sectionGroup:
+        fr: Faillite
+      classes: icone register
+      sections:
+        - section:
+            fr: "4.1 – Situation de faillite"
+          id: sectionFaillite
+          components:
+            - type: avis
+              classes: information
+              text:
+                fr: |
+                  <p>Si vous avez fait faillite ou si vous avez fait cession de vos biens, vous n'êtes pas admissible à une aide pour remettre la résidence en état. Toutefois, vous pourriez recevoir une assistance financière pour les frais excédentaires d'hébergement temporaire ou de ravitaillement, vos biens meubles admissibles, les mesures préventives temporaires mises en place ainsi que les travaux d'urgence effectués.</p>
+                  <p>Lorsque le syndic renonce à tous droits, titres et intérêts qu'il détient dans la résidence, conformément à l'article 20 de la <em>Loi sur la faillite et l'insolvabilité</em> (LRC (1985), c. B-3), le MSP peut accorder une assistance au propriétaire d'une résidence pour les dommages à celle-ci et à son chemin d'accès.</p>
+                  <p>Si vous êtes libéré de votre faillite, vous redevenez admissible, sous réserve des dispositions prévues au programme.</p>
+            - type: radio
+              name: enFaillite
+              label:
+                fr: "Êtes-vous, ou un des copropriétaires habitant la résidence, actuellement en faillite ou avez-vous fait cession de vos biens ?"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: date
+              name: datePrevueLiberationFaillite
+              label:
+                fr: "Date prévue de libération"
+              v-if: "this.val('enFaillite') === 'Oui'"
+              validations:
+                optional:
+            - type: avis
+              classes: avertissement
+              v-if: "this.val('enFaillite') === 'Non'"
+              text:
+                fr: "<p>Vous devez informer le MSP de tout changement à cet effet.</p>"
+
+    # ─── Section 5 – Assistance financière ───────────────────────────────────
+    - sectionGroup:
+        fr: "Assistance financière, obtenue ou à recevoir, en lien avec le sinistre"
+      classes: icone cash-dollar
+      sections:
+        - section:
+            fr: "5.1 – Indemnisations reçues ou attendues"
+          id: sectionAssistanceFinanciere
+          components:
+            - type: avis
+              classes: information
+              text:
+                fr: "<p>L'assistance financière est une aide de dernier recours. Par conséquent, vous devez divulguer au MSP toutes sommes que vous avez reçues en lien avec le sinistre.</p>"
+            - type: radio
+              name: indemnisationAssureur
+              label:
+                fr: "Avez-vous reçu ou attendez-vous une indemnisation de la part de votre assureur ?"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: number
+              name: indemnisationAssureurMontant
+              label:
+                fr: "Montant de l'assureur ($)"
+              v-if: "this.val('indemnisationAssureur') === 'Oui'"
+            - type: avis
+              classes: information
+              v-if: "this.val('indemnisationAssureur') === 'Oui'"
+              text:
+                fr: "<p>Veuillez fournir une copie du règlement de votre assureur.</p>"
+            - type: customfileUlterieure
+              name: docReglementAssureur
+              label:
+                fr: "Copie du règlement de l'assureur"
+              v-if: "this.val('indemnisationAssureur') === 'Oui'"
+            - type: radio
+              name: indemnisationOrganisme
+              label:
+                fr: "Avez-vous reçu ou attendez-vous une indemnisation d'un organisme de bienfaisance ?"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: number
+              name: indemnisationOrganismeMontant
+              label:
+                fr: "Montant de l'organisme de bienfaisance ($)"
+              v-if: "this.val('indemnisationOrganisme') === 'Oui'"
+            - type: radio
+              name: indemnisationMinistere
+              label:
+                fr: "Avez-vous reçu ou attendez-vous une indemnisation d'un ministère ou organisme public (autre que le MSP) ?"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: number
+              name: indemnisationMinistereMontant
+              label:
+                fr: "Montant du ministère ou organisme public ($)"
+              v-if: "this.val('indemnisationMinistere') === 'Oui'"
+            - type: radio
+              name: indemnisationAutreSource
+              label:
+                fr: "Avez-vous reçu ou attendez-vous une indemnisation d'une autre source ?"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: inline
+              v-if: "this.val('indemnisationAutreSource') === 'Oui'"
+              components:
+                - type: number
+                  name: indemnisationAutreSourceMontant
+                  label:
+                    fr: "Montant ($)"
+                - type: text
+                  name: indemnisationAutreSourceProvenance
+                  label:
+                    fr: "Provenance"
+
+        - section:
+            fr: "5.2 – Poursuites contre des tiers"
+          id: sectionPoursuites
+          components:
+            - type: radio
+              name: poursuitesTiers
+              label:
+                fr: "Avez-vous intenté ou avez-vous l'intention d'intenter des poursuites ou des recours collectifs contre un ou plusieurs tiers responsables de vos dommages ?"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: avis
+              classes: avertissement
+              v-if: "this.val('poursuitesTiers') === 'Non'"
+              text:
+                fr: "<p>Vous devez informer le MSP de tout changement à cet effet.</p>"
+
+    # ─── Section 6 – Renseignements sur la résidence ──────────────────────────
+    - sectionGroup:
+        fr: "Renseignements relatifs à la résidence"
+      classes: icone register
+      sections:
+        - section:
+            fr: "Caractéristiques de la résidence"
+          id: sectionResidence
+          components:
+            - type: avis
+              classes: information
+              text:
+                fr: |
+                  <p><strong>Dimensions approximatives de la résidence :</strong> si la résidence est de forme irrégulière, veuillez indiquer ses dimensions de façon approximative. Au besoin, la personne mandatée par le MSP qui ira constater et/ou évaluer les dommages à votre résidence prendra les mesures réelles de celle-ci.</p>
+                  <p><strong>Zone de récurrence d'inondations :</strong> la plaine inondable est l'espace occupé par un lac ou un cours d'eau en période de crue. Elle est constituée de deux zones :<br>
+                  — <strong>Zone de grand courant (0-20 ans)</strong> : zone pouvant être inondée par une crue de récurrence de 20 ans.<br>
+                  — <strong>Zone de faible courant (20-100 ans)</strong> : partie de la plaine inondable s'étendant jusqu'à la limite de la zone pouvant être inondée par une crue centenaire.</p>
+            - type: number
+              name: anneeConstruction
+              label:
+                fr: "6.1 – Année de construction de la résidence"
+            - type: inline
+              components:
+                - type: number
+                  name: dimensionLargeur
+                  label:
+                    fr: "6.2 – Largeur (approximative)"
+                - type: number
+                  name: dimensionLongueur
+                  label:
+                    fr: Longueur (approximative)
+            - type: radio
+              name: dimensionUnite
+              label:
+                fr: "Unité de mesure utilisée"
+              options:
+                Pieds:
+                  fr: Pieds
+                Metres:
+                  fr: Mètres
+            - type: radio
+              name: zoneRecurrence
+              label:
+                fr: "6.3 – Zone de récurrence d'inondations"
+              options:
+                HorsZone:
+                  fr: Hors zone
+                R0a20:
+                  fr: "Récurrence 0-20 ans"
+                R20a100:
+                  fr: "Récurrence 20-100 ans"
+                NeSaitPas:
+                  fr: Je ne sais pas
+            - type: radio
+              name: typeFondations
+              label:
+                fr: "6.4 – Type de fondations de la résidence"
+              options:
+                SousSol:
+                  fr: Sous-sol
+                DalleBeton:
+                  fr: Dalle de béton au sol
+                Pilotis:
+                  fr: "Sur pilotis (pieux, maison mobile)"
+                VideSanitaire:
+                  fr: Vide sanitaire
+                NeSaitPas:
+                  fr: Je ne sais pas
+            - type: radio
+              name: typeIsolant
+              label:
+                fr: "6.5 – Type d'isolant recouvrant les murs de fondations du sous-sol ou du vide sanitaire"
+              v-if: "this.val('typeFondations') === 'SousSol' || this.val('typeFondations') === 'VideSanitaire'"
+              options:
+                IsolantLaine:
+                  fr: Isolant de laine
+                IsolantRigide:
+                  fr: Isolant rigide
+                Urethane:
+                  fr: Uréthane
+                AucunIsolant:
+                  fr: Aucun isolant
+                NeSaitPas:
+                  fr: Je ne sais pas
+                NeApplique:
+                  fr: "Ne s'applique pas"
+            - type: radio
+              name: revetementMursFondation
+              label:
+                fr: "6.6 – Revêtement des murs de fondations du sous-sol"
+              v-if: "this.val('typeFondations') === 'SousSol'"
+              options:
+                Gypse:
+                  fr: Gypse
+                PanneauxPrefini:
+                  fr: Panneaux de préfini
+                Contreplaque:
+                  fr: Contreplaqué
+                Autre:
+                  fr: Autre
+                NeSaitPas:
+                  fr: Je ne sais pas
+                NeApplique:
+                  fr: "Ne s'applique pas"
+
+    # ─── Section 7 – Renseignements relatifs à l'inondation ──────────────────
+    - sectionGroup:
+        fr: "Renseignements relatifs à l'inondation"
+      classes: icone register
+      v-if: "this.val('typeSinistre') && (this.val('typeSinistre').includes('Inondation') || this.val('typeSinistre').includes('MouvementSol'))"
+      sections:
+        - section:
+            fr: "Caractéristiques de l'inondation"
+          id: sectionInondation
+          components:
+            - type: radio
+              name: debordementCoursEau
+              label:
+                fr: "7.1 – Le sinistre a-t-il été causé par le débordement d'un cours d'eau ?"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+                NeSaitPas:
+                  fr: Je ne sais pas
+            - type: text
+              name: nomCoursEau
+              label:
+                fr: "Nom du cours d'eau"
+              v-if: "this.val('debordementCoursEau') === 'Oui'"
+
+        - section:
+            fr: "Étendue de l'eau"
+          id: sectionEtendue
+          v-if: "this.val('debordementCoursEau') !== 'Non'"
+          components:
+            - type: radio
+              name: eauAtteintTerrain
+              label:
+                fr: "7.2 – L'eau provenant du cours d'eau a-t-elle atteint votre terrain ?"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+                NeSaitPas:
+                  fr: Je ne sais pas
+                NeApplique:
+                  fr: "Ne s'applique pas"
+            - type: radio
+              name: eauAtteintResidence
+              label:
+                fr: "L'eau provenant du cours d'eau a-t-elle atteint votre résidence ?"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+                NeSaitPas:
+                  fr: Je ne sais pas
+                NeApplique:
+                  fr: "Ne s'applique pas"
+            - type: checkbox
+              name: modeInfiltration
+              label:
+                fr: "7.3 – Comment l'eau s'est-elle infiltrée à l'intérieur de votre résidence ?"
+              options:
+                Inconnu:
+                  fr: Je ne sais pas
+                AucuneInfiltration:
+                  fr: Aucune infiltration
+                ParFissure:
+                  fr: Infiltration par une fissure
+                ParPlancher:
+                  fr: Infiltration par le plancher
+                ParOuverture:
+                  fr: Infiltration par une ouverture
+                RefoulementDrain:
+                  fr: "Refoulement par le drain du plancher ou par le puits de captation"
+                RefoulementEgout:
+                  fr: "Refoulement d'égout"
+                Autre:
+                  fr: Autre
+            - type: radio
+              name: uniteNiveauEau
+              label:
+                fr: "7.4 – Unité de mesure pour le niveau d'eau"
+              options:
+                Pouces:
+                  fr: Pouces
+                Pieds:
+                  fr: Pieds
+                Centimetres:
+                  fr: Centimètres
+                Metres:
+                  fr: Mètres
+            - type: inline
+              components:
+                - type: number
+                  name: niveauEauVideSanitaire
+                  label:
+                    fr: "Niveau au vide sanitaire"
+                  validations:
+                    optional:
+                - type: number
+                  name: niveauEauSousSol
+                  label:
+                    fr: "Niveau au sous-sol"
+                  validations:
+                    optional:
+                - type: number
+                  name: niveauEauRDC
+                  label:
+                    fr: "Niveau au rez-de-chaussée"
+                  validations:
+                    optional:
+            - type: radio
+              name: dureeEauResidence
+              label:
+                fr: "7.5 – Combien de temps l'eau est-elle demeurée dans votre résidence ?"
+              options:
+                Moins12h:
+                  fr: "Moins de 12 heures"
+                De12a24h:
+                  fr: "De 12 à 24 heures"
+                De24a48h:
+                  fr: "De 24 à 48 heures"
+                Plus48h:
+                  fr: "Plus de 48 heures"
+                NeSaitPas:
+                  fr: Je ne sais pas
+                NeApplique:
+                  fr: "Ne s'applique pas"
+
+    # ─── Section 8 – Réclamation ──────────────────────────────────────────────
+    - sectionGroup:
+        fr: Réclamation
+      classes: icone cash-dollar
+      sections:
+
+        # ── 8A – Pièces admissibles ───────────────────────────────────────────
+        - section:
+            fr: "A – Pièces admissibles endommagées"
+          id: sectionPieces
+          components:
+            - type: dynamic
+              tag: div
+              classes: page-texte
+              text:
+                fr: |
+                  <p>Veuillez sélectionner les pièces admissibles ayant été touchées par le sinistre. Précisez leur emplacement dans la résidence et si celles-ci ont un recouvrement de sol (bois franc, bois d'ingénierie, bois flottant, céramique, vinyle, tapis, etc.).</p>
+            - type: radio
+              name: aPiecesDommagees
+              label:
+                fr: "Des pièces de votre résidence ont-elles été endommagées ?"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: repeatableGroup
+              name: piecesDommagees
+              label:
+                fr: Pièces endommagées
+              v-if: "this.val('aPiecesDommagees') === 'Oui'"
+              repeatable: true
+              minimum: 1
+              components:
+                - type: listeDeroulante
+                  name: pieceTouchee
+                  label:
+                    fr: Pièce touchée
+                  options: typesPieces
+                - type: radio
+                  name: pieceEmplacement
+                  label:
+                    fr: Emplacement
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: Rez-de-chaussée
+                - type: radio
+                  name: pieceRecouvrement
+                  label:
+                    fr: Recouvrement de sol
+                  options:
+                    Avec:
+                      fr: Avec recouvrement de sol
+                    Sans:
+                      fr: Sans recouvrement de sol
+            - type: customfileUlterieure
+              name: docPhotosVideos
+              label:
+                fr: "Photographies et vidéos des dommages"
+              v-if: "this.val('aPiecesDommagees') === 'Oui'"
+            - type: customfileUlterieure
+              name: docFacturesPieces
+              label:
+                fr: "Factures ou estimations pour les réparations"
+              v-if: "this.val('aPiecesDommagees') === 'Oui'"
+
+        # ── 8B – Biens meubles ────────────────────────────────────────────────
+        - section:
+            fr: "B – Dommages aux biens meubles admissibles"
+          id: sectionBiensMeubles
+          components:
+            - type: dynamic
+              tag: div
+              classes: page-texte
+              text:
+                fr: |
+                  <p>Veuillez sélectionner les biens meubles admissibles qui ont été endommagés par le sinistre ou qui sont rendus inaccessibles de manière définitive. Indiquez le montant que vous réclamez ainsi que l'emplacement des biens dans votre résidence.</p>
+                  <p>L'indemnité pouvant être accordée pour les biens suivis d'un astérisque (*) est limitée au montant indiqué dans la réclamation, sans dépasser la valeur maximale.</p>
+            - type: radio
+              name: aBiensMeubles
+              label:
+                fr: "Avez-vous des biens meubles endommagés ou inaccessibles de façon définitive ?"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+
+        # ── 8B – Cuisine et salle à manger ────────────────────────────────────
+        - section:
+            fr: "B1 – Cuisine et salle à manger (montant par cuisine et salle à manger)"
+          id: sectionBMCuisineEnsemble
+          v-if: "this.val('aBiensMeubles') === 'Oui'"
+          components:
+            - type: inline
+              components:
+                - type: number
+                  name: bm_cuisiniere
+                  label:
+                    fr: "Cuisinière ou four et plaque de cuisson (max. 1 200 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_cuisiniere_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_cuisiniere')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_refrigerateur
+                  label:
+                    fr: "Réfrigérateur (max. 1 300 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_refrigerateur_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_refrigerateur')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_lavevaisselle
+                  label:
+                    fr: "Lave-vaisselle (max. 800 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_lavevaisselle_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_lavevaisselle')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_table4chaises
+                  label:
+                    fr: "Table et quatre chaises (max. 1 100 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_table4chaises_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_table4chaises')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_batteriecuisine
+                  label:
+                    fr: "Batterie de cuisine (max. 200 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_batteriecuisine_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_batteriecuisine')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_microondes
+                  label:
+                    fr: "Four micro-ondes (max. 250 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_microondes_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_microondes')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_petitsAppareils
+                  label:
+                    fr: "Petits appareils électroménagers* (max. 1 000 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_petitsAppareils_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_petitsAppareils')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_ustensiles
+                  label:
+                    fr: "Ustensiles (max. 200 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_ustensiles_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_ustensiles')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_vaisselle
+                  label:
+                    fr: "Ensemble de vaisselle (max. 150 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_vaisselle_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_vaisselle')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_vaisselier
+                  label:
+                    fr: "Vaisselier ou buffet (max. 400 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_vaisselier_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_vaisselier')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_chaiseAdd
+                  label:
+                    fr: "Chaise de cuisine additionnelle ou tabouret (max. 125 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_chaiseAdd_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_chaiseAdd')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+
+        # ── 8B – Salon et salle familiale ─────────────────────────────────────
+        - section:
+            fr: "B2 – Salon et salle familiale (montant par article)"
+          id: sectionBMSalon
+          v-if: "this.val('aBiensMeubles') === 'Oui'"
+          components:
+            - type: inline
+              components:
+                - type: number
+                  name: bm_televiseur
+                  label:
+                    fr: "Téléviseur (max. 550 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_televiseur_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_televiseur')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_meubleTv
+                  label:
+                    fr: "Meuble pour téléviseur (max. 300 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_meubleTv_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_meubleTv')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_divan3
+                  label:
+                    fr: "Divan (3 places) (max. 1 200 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_divan3_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_divan3')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_causeuse
+                  label:
+                    fr: "Causeuse (2 places) (max. 900 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_causeuse_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_causeuse')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_fauteuil
+                  label:
+                    fr: "Fauteuil (1 place) (max. 600 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_fauteuil_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_fauteuil')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_futon
+                  label:
+                    fr: "Futon (max. 600 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_futon_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_futon')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_tableSalon
+                  label:
+                    fr: "Table (max. 200 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_tableSalon_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_tableSalon')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_lampeSalon
+                  label:
+                    fr: "Lampe (max. 100 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_lampeSalon_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_lampeSalon')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+
+        # ── 8B – Chambre à coucher ────────────────────────────────────────────
+        - section:
+            fr: "B3 – Chambre à coucher (montant par article)"
+          id: sectionBMChambre
+          v-if: "this.val('aBiensMeubles') === 'Oui'"
+          components:
+            - type: inline
+              components:
+                - type: number
+                  name: bm_matelasDouble
+                  label:
+                    fr: "Matelas et sommier pour deux (max. 1 200 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_matelasDouble_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_matelasDouble')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_matelasSimple
+                  label:
+                    fr: "Matelas et sommier simple (max. 500 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_matelasSimple_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_matelasSimple')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_baseLitDouble
+                  label:
+                    fr: "Base de lit pour deux (max. 500 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_baseLitDouble_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_baseLitDouble')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_baseLitSimple
+                  label:
+                    fr: "Base de lit simple (max. 300 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_baseLitSimple_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_baseLitSimple')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_bureauCommode
+                  label:
+                    fr: "Bureau ou commode (max. 400 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_bureauCommode_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_bureauCommode')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_tableChevet
+                  label:
+                    fr: "Table de chevet (max. 150 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_tableChevet_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_tableChevet')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_miroir
+                  label:
+                    fr: "Miroir (max. 50 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_miroir_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_miroir')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_lampeChevet
+                  label:
+                    fr: "Lampe de chevet (max. 100 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_lampeChevet_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_lampeChevet')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+
+        # ── 8B – Buanderie ou salle de bain ───────────────────────────────────
+        - section:
+            fr: "B4 – Buanderie ou salle de bain (montant par buanderie ou salle de bain)"
+          id: sectionBMBuanderie
+          v-if: "this.val('aBiensMeubles') === 'Oui'"
+          components:
+            - type: inline
+              components:
+                - type: number
+                  name: bm_laveuse
+                  label:
+                    fr: "Laveuse (max. 1 000 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_laveuse_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_laveuse')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_secheuse
+                  label:
+                    fr: "Sécheuse (max. 900 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_secheuse_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_secheuse')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+
+        # ── 8B – Divers (par résidence) ───────────────────────────────────────
+        - section:
+            fr: "B5 – Divers (montant par résidence)"
+          id: sectionBMDiversResidence
+          v-if: "this.val('aBiensMeubles') === 'Oui'"
+          components:
+            - type: inline
+              components:
+                - type: number
+                  name: bm_aspirateur
+                  label:
+                    fr: "Aspirateur (max. 300 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_aspirateur_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_aspirateur')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_congelateur
+                  label:
+                    fr: "Congélateur (max. 600 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_congelateur_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_congelateur')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_2eRefrig
+                  label:
+                    fr: "Deuxième réfrigérateur (max. 1 300 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_2eRefrig_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_2eRefrig')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_appElectro
+                  label:
+                    fr: "Appareils électroniques* (max. 1 000 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_appElectro_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_appElectro')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_ferRepasser
+                  label:
+                    fr: "Fer à repasser (max. 50 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_ferRepasser_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_ferRepasser')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_plancheRepasser
+                  label:
+                    fr: "Planche à repasser (max. 50 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_plancheRepasser_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_plancheRepasser')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_outils
+                  label:
+                    fr: "Outils d'entretien* (max. 400 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_outils_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_outils')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    GarCab:
+                      fr: "Garage / Cabanon"
+            - type: inline
+              components:
+                - type: number
+                  name: bm_tondeuse
+                  label:
+                    fr: "Tondeuse (max. 300 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_tondeuse_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_tondeuse')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    GarCab:
+                      fr: "Garage / Cabanon"
+            - type: inline
+              components:
+                - type: number
+                  name: bm_souffleuse
+                  label:
+                    fr: "Souffleuse (max. 1 000 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_souffleuse_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_souffleuse')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    GarCab:
+                      fr: "Garage / Cabanon"
+
+        # ── 8B – Divers (par article) ─────────────────────────────────────────
+        - section:
+            fr: "B6 – Divers (montant par article)"
+          id: sectionBMDiversArticle
+          v-if: "this.val('aBiensMeubles') === 'Oui'"
+          components:
+            - type: inline
+              components:
+                - type: number
+                  name: bm_climatiseur
+                  label:
+                    fr: "Climatiseur portatif ou mural (max. 700 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_climatiseur_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_climatiseur')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_rideaux
+                  label:
+                    fr: "Rideaux et stores, par fenêtre (max. 100 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_rideaux_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_rideaux')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_ordinateur
+                  label:
+                    fr: "Ordinateur de bureau ou portable (max. 500 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_ordinateur_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_ordinateur')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_tablette
+                  label:
+                    fr: "Tablette électronique (max. 250 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_tablette_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_tablette')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_mobilierInfo
+                  label:
+                    fr: "Mobilier d'ordinateur (max. 200 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_mobilierInfo_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_mobilierInfo')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_chaiseInfo
+                  label:
+                    fr: "Chaise d'ordinateur (max. 200 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_chaiseInfo_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_chaiseInfo')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_imprimante
+                  label:
+                    fr: "Imprimante (max. 200 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_imprimante_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_imprimante')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_classeur
+                  label:
+                    fr: "Classeur (max. 200 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_classeur_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_classeur')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_ventilateur
+                  label:
+                    fr: "Ventilateur (max. 100 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_ventilateur_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_ventilateur')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_sechoir
+                  label:
+                    fr: "Séchoir (max. 50 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_sechoir_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_sechoir')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_ferCheveaux
+                  label:
+                    fr: "Fer à cheveux (max. 50 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_ferCheveaux_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_ferCheveaux')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_rasoir
+                  label:
+                    fr: "Rasoir électrique (max. 50 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_rasoir_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_rasoir')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_telephone
+                  label:
+                    fr: "Téléphone (max. 40 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_telephone_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_telephone')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_humidificateur
+                  label:
+                    fr: "Humidificateur (max. 100 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_humidificateur_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_humidificateur')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_deshumidificateur
+                  label:
+                    fr: "Déshumidificateur (max. 350 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_deshumidificateur_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_deshumidificateur')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_poubelleInt
+                  label:
+                    fr: "Poubelle intérieure (max. 30 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_poubelleInt_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_poubelleInt')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_armoire
+                  label:
+                    fr: "Armoire, bibliothèque et étagère (max. 200 $)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_armoire_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_armoire')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: number
+              name: bm_poubelleExt
+              label:
+                fr: "Poubelle extérieure, bac de recyclage et composteur (max. 100 $)"
+              validations:
+                optional:
+
+        # ── 8B – Articles par occupant permanent ──────────────────────────────
+        - section:
+            fr: "B7 – Articles (montant par occupant permanent)"
+          id: sectionBMArticlesOccupant
+          v-if: "this.val('aBiensMeubles') === 'Oui'"
+          components:
+            - type: inline
+              components:
+                - type: number
+                  name: bm_vetements
+                  label:
+                    fr: "Vêtements, sauf les vêtements de luxe* (max. 2 000 $ / occupant)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_vetements_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_vetements')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_biensPro
+                  label:
+                    fr: "Autres biens essentiels au travail d'une personne salariée* (max. 1 000 $ / occupant)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_biensPro_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_biensPro')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_articlesSport
+                  label:
+                    fr: "Articles de sport* (max. 1 000 $ / occupant)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_articlesSport_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_articlesSport')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_aliments
+                  label:
+                    fr: "Aliments essentiels, produits ménagers et personnels* (600 $ 1er occupant + 100 $ / occupant additionnel)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_aliments_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_aliments')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_handicap
+                  label:
+                    fr: "Équipements pour personne handicapée* (max. 500 $ / personne ayant un handicap)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_handicap_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_handicap')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_lingeMaison
+                  label:
+                    fr: "Linge de maison (literie, serviettes, linge de cuisine)* (max. 400 $ / occupant)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_lingeMaison_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_lingeMaison')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_livresEtudiant
+                  label:
+                    fr: "Livres et matériel nécessaires pour un étudiant à temps plein* (max. 300 $ / étudiant)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_livresEtudiant_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_livresEtudiant')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: inline
+              components:
+                - type: number
+                  name: bm_articlesEnfant
+                  label:
+                    fr: "Articles pour enfant* (max. 500 $ / enfant)"
+                  validations:
+                    optional:
+                - type: radio
+                  name: bm_articlesEnfant_emp
+                  label:
+                    fr: Emplacement
+                  v-if: "parseFloat(this.val('bm_articlesEnfant')) > 0"
+                  options:
+                    SousSol:
+                      fr: Sous-sol
+                    RDC:
+                      fr: RDC
+            - type: customfileUlterieure
+              name: docFacturesBiensMeubles
+              label:
+                fr: "Factures ou estimations pour les biens meubles endommagés"
+
+        # ── 8C – Mesures préventives temporaires ──────────────────────────────
+        - section:
+            fr: "C – Mesures préventives temporaires"
+          id: sectionMesuresPreventives
+          components:
+            - type: radio
+              name: mesuresPreventives
+              label:
+                fr: "Avez-vous mis en place des mesures préventives temporaires avant et/ou pendant le sinistre afin d'éviter ou de limiter les dommages à vos biens ?"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: inline
+              v-if: "this.val('mesuresPreventives') === 'Oui'"
+              components:
+                - type: date
+                  name: mesuresPreventivesDu
+                  label:
+                    fr: "Ces mesures ont été mises en place du"
+                - type: date
+                  name: mesuresPreventivesAu
+                  label:
+                    fr: au
+            - type: checkbox
+              name: typesMesuresPreventives
+              label:
+                fr: "Veuillez indiquer lesquelles"
+              v-if: "this.val('mesuresPreventives') === 'Oui'"
+              options:
+                SacsSable:
+                  fr: "Installation de sacs de sable"
+                SurelEvation:
+                  fr: "Surélévation des biens meubles et des appareils mécaniques ou électriques"
+                Deplacement:
+                  fr: "Déplacement des biens à l'étage supérieur"
+                Placardage:
+                  fr: "Placardage des portes et des fenêtres"
+                Digue:
+                  fr: "Érection d'une digue, d'un remblai ou d'un enrochement temporaire"
+                Fosse:
+                  fr: "Creusage d'un fossé"
+                Pompe:
+                  fr: "Installation ou surveillance de pompe(s)"
+                Autre:
+                  fr: "Autre mesure"
+            - type: text
+              name: typesMesuresPreventivesAutre
+              label:
+                fr: "Précisez la mesure préventive"
+              v-if: "this.val('mesuresPreventives') === 'Oui' && this.val('typesMesuresPreventives') && this.val('typesMesuresPreventives').includes('Autre')"
+
+        # ── 8D – Hébergement temporaire ───────────────────────────────────────
+        - section:
+            fr: "D – Frais excédentaires d'hébergement temporaire et de ravitaillement"
+          id: sectionHebergement
+          components:
+            - type: radio
+              name: evacuation
+              label:
+                fr: "Avez-vous évacué votre résidence en raison du sinistre ?"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: radio
+              name: hebergementCroixRouge
+              label:
+                fr: "Avez-vous été ou êtes-vous actuellement hébergé avec l'aide de la Croix-Rouge canadienne ?"
+              v-if: "this.val('evacuation') === 'Oui'"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: inline
+              v-if: "this.val('hebergementCroixRouge') === 'Oui'"
+              components:
+                - type: date
+                  name: hebergementCroixRougeDu
+                  label:
+                    fr: du
+                - type: date
+                  name: hebergementCroixRougeAu
+                  label:
+                    fr: au
+            - type: dynamic
+              tag: div
+              v-if: "this.val('evacuation') === 'Oui'"
+              text:
+                fr: "<p><strong>Lieu d'hébergement</strong></p>"
+            - type: text
+              name: hebergementNomEtablissement
+              label:
+                fr: "Nom de l'établissement ou de la personne qui vous héberge"
+              v-if: "this.val('evacuation') === 'Oui'"
+            - type: inline
+              v-if: "this.val('evacuation') === 'Oui'"
+              components:
+                - type: text
+                  name: hebergementAdresse
+                  label:
+                    fr: Adresse
+                - type: text
+                  name: hebergementMunicipalite
+                  label:
+                    fr: Municipalité
+                - type: text
+                  name: hebergementCodePostal
+                  label:
+                    fr: Code postal
+            - type: repeatableGroup
+              name: personnesHebergees
+              label:
+                fr: "Renseignements sur les personnes hébergées"
+              v-if: "this.val('evacuation') === 'Oui'"
+              repeatable: true
+              minimum: 1
+              components:
+                - type: inline
+                  components:
+                    - type: text
+                      name: hebergPrenom
+                      label:
+                        fr: Prénom
+                    - type: text
+                      name: hebergNom
+                      label:
+                        fr: Nom
+                - type: inline
+                  components:
+                    - type: date
+                      name: hebergDu
+                      label:
+                        fr: Du
+                    - type: date
+                      name: hebergAu
+                      label:
+                        fr: Au
+
+        # ── 8E – Déménagement ou entreposage ──────────────────────────────────
+        - section:
+            fr: "E – Frais de déménagement ou d'entreposage"
+          id: sectionDemenagement
+          components:
+            - type: radio
+              name: fraisDemenagement
+              label:
+                fr: "Avez-vous eu ou aurez-vous à déménager ou à faire entreposer vos biens meubles ?"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: number
+              name: fraisDemenagementCout
+              label:
+                fr: "Coût ($)"
+              v-if: "this.val('fraisDemenagement') === 'Oui'"
+            - type: avis
+              classes: information
+              v-if: "this.val('fraisDemenagement') === 'Oui'"
+              text:
+                fr: "<p>Vous devez fournir les factures.</p>"
+            - type: customfileUlterieure
+              name: docFacturesDemenagement
+              label:
+                fr: "Factures de déménagement ou d'entreposage"
+              v-if: "this.val('fraisDemenagement') === 'Oui'"
+
+        # ── 8F – Travaux d'urgence ────────────────────────────────────────────
+        - section:
+            fr: "F – Travaux d'urgence et travaux temporaires"
+          id: sectionTravauxUrgence
+          components:
+            - type: radio
+              name: travauxUrgenceEntrepreneur
+              label:
+                fr: "Des travaux (démolition, nettoyage, élimination des débris, décontamination ou déshumidification) ont-ils été ou seront-ils réalisés par un entrepreneur ou une entreprise de nettoyage après sinistre ?"
+              options:
+                OuiPartie:
+                  fr: "Oui, en partie"
+                OuiTotalite:
+                  fr: "Oui, en totalité"
+                Non:
+                  fr: Non
+            - type: number
+              name: travauxUrgenceCout
+              label:
+                fr: "Coût des travaux faits par un entrepreneur ($)"
+              v-if: "this.val('travauxUrgenceEntrepreneur') === 'OuiPartie' || this.val('travauxUrgenceEntrepreneur') === 'OuiTotalite'"
+            - type: avis
+              classes: information
+              v-if: "this.val('travauxUrgenceEntrepreneur') === 'OuiPartie' || this.val('travauxUrgenceEntrepreneur') === 'OuiTotalite'"
+              text:
+                fr: "<p>Vous devrez fournir les factures d'entrepreneurs.</p>"
+            - type: radio
+              name: travauxTemporaires
+              label:
+                fr: "Avant la réalisation des travaux permanents, des travaux temporaires (rétablissement de l'électricité, placardage d'ouvertures endommagées) ont-ils été ou seront-ils réalisés afin de rendre votre résidence habitable ?"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: number
+              name: travauxTemporairesCout
+              label:
+                fr: "Coût ($)"
+              v-if: "this.val('travauxTemporaires') === 'Oui'"
+            - type: avis
+              classes: information
+              v-if: "this.val('travauxTemporaires') === 'Oui'"
+              text:
+                fr: "<p>Vous devrez fournir les factures d'entrepreneurs.</p>"
+            - type: customfileUlterieure
+              name: docFacturesTravauxUrgence
+              label:
+                fr: "Factures d'entrepreneurs (travaux d'urgence et travaux temporaires)"
+              v-if: "this.val('travauxUrgenceEntrepreneur') !== 'Non' || this.val('travauxTemporaires') === 'Oui'"
+
+        # ── 8G – Dommages au chemin d'accès ───────────────────────────────────
+        - section:
+            fr: "G – Dommages au chemin d'accès"
+          id: sectionCheminAcces
+          components:
+            - type: radio
+              name: cheminAccesEndommage
+              label:
+                fr: "Le chemin d'accès qui mène à votre résidence a-t-il été endommagé ?"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: radio
+              name: cheminAccesSeul
+              label:
+                fr: "Est-ce le seul chemin d'accès qui mène à votre résidence ?"
+              v-if: "this.val('cheminAccesEndommage') === 'Oui'"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: radio
+              name: cheminAccesMinimalPossible
+              label:
+                fr: "Un accès minimal et sécuritaire à votre résidence est-il encore possible ?"
+              v-if: "this.val('cheminAccesEndommage') === 'Oui'"
+              options:
+                Oui:
+                  fr: Oui
+                Non:
+                  fr: Non
+            - type: number
+              name: cheminAccesCout
+              label:
+                fr: "Coût estimé des travaux ($)"
+              v-if: "this.val('cheminAccesEndommage') === 'Oui'"
+            - type: textarea
+              name: cheminAccesDescriptionDommages
+              label:
+                fr: "Décrivez brièvement les dommages constatés (ex. : pont ou ponceau endommagé ainsi que sa taille avant le sinistre)"
+              v-if: "this.val('cheminAccesEndommage') === 'Oui'"
+            - type: avis
+              classes: information
+              v-if: "this.val('cheminAccesEndommage') === 'Oui'"
+              text:
+                fr: "<p>Vous devrez fournir les factures d'entrepreneurs.</p>"
+            - type: customfileUlterieure
+              name: docFacturesCheminAcces
+              label:
+                fr: "Factures d'entrepreneurs (dommages au chemin d'accès)"
+              v-if: "this.val('cheminAccesEndommage') === 'Oui'"
+
+    # ─── Section 9 – Consentements ────────────────────────────────────────────
+    - sectionGroup:
+        fr: "Consentements du demandeur et des copropriétaires"
+      classes: icone clipboard-check
+      sections:
+        - section:
+            fr: "Nombre de copropriétaires"
+          id: sectionNombreCoprop
+          components:
+            - type: radio
+              name: nombreCoproprietaires
+              label:
+                fr: "Combien de copropriétaires occupent la résidence principale endommagée ?"
+              options:
+                Aucun:
+                  fr: Aucun copropriétaire
+                Un:
+                  fr: 1 copropriétaire
+                Deux:
+                  fr: 2 copropriétaires
+                Trois:
+                  fr: 3 copropriétaires
+
+        - section:
+            fr: "9 – Consentements : communication et vérification des renseignements personnels auprès de tiers (obligatoires)"
+          id: sectionConsentements
+          cacherTexteExplicatifChampsObligatoires: true
+          components:
+            - type: avis
+              classes: information
+              text:
+                fr: "<p>Le demandeur et les copropriétaires occupants doivent consentir à chacun des énoncés de la présente section pour que le MSP puisse traiter la demande.</p>"
+            - type: checkbox
+              name: consentementsDemandeur
+              label:
+                fr: "Consentements du demandeur — cocher tous les énoncés"
+              options:
+                c1:
+                  fr: "Je consens à ce que le MSP vérifie mon adresse de résidence principale et l'historique de mes changements d'adresse par le numéro de permis de conduire à la Société de l'assurance automobile du Québec; mon adresse de résidence principale et le détail de mon revenu total auprès de Revenu Québec; ainsi que mon adresse et la composition de mon unité familiale auprès du MESS."
+                c2:
+                  fr: "Je consens à ce que le MSP vérifie toute somme reçue de programmes d'assistance financière mis en vigueur par des ministères et des organismes publics, notamment le MESS et la Société d'habitation du Québec, ainsi que toute aide reçue de la Croix-Rouge canadienne."
+                c3:
+                  fr: "Je consens à ce que le MSP utilise des renseignements personnels me concernant pour faire des vérifications auprès de toute compagnie d'assurance contribuant au traitement de la présente demande."
+                c4:
+                  fr: "Je consens à ce que le MSP utilise des renseignements personnels me concernant pour faire des vérifications auprès de tout fournisseur de services professionnels contribuant au traitement de la présente demande (entrepreneur, firme d'arpentage, firme d'ingénierie, firme de comptables)."
+                c5:
+                  fr: "Je consens à ce que le MSP utilise des renseignements personnels pour faire des vérifications auprès des autorités municipales ou régionales (MRC) contribuant au traitement de la présente demande."
+                c6:
+                  fr: "Je consens à ce que le MSP utilise des renseignements personnels me concernant pour faire des vérifications auprès de mon employeur, relativement aux pièces justificatives fournies."
+                c7:
+                  fr: "Je consens à ce que le MSP communique des renseignements personnels me concernant à une entreprise privée, à un ministère ou à un organisme public du Québec ou du Canada, dans le but de me donner accès à un service ou à un programme, s'il juge que ma situation le requiert."
+                c8:
+                  fr: "Je consens à ce que le MSP communique des renseignements personnels me concernant à mon syndic ou au Bureau du surintendant des faillites, si ma situation le requiert."
+                c9:
+                  fr: "En cas de transfert de ma résidence à un tiers (ex. : vente, cession) et d'une inondation subséquente, je consens à ce que le MSP communique au(x) nouveau(x) propriétaire(s) l'assistance financière versée pour les dommages en vertu de la présente demande."
+              validations:
+                min: 9
+            - type: checkbox
+              name: consentementsCoprop1
+              label:
+                fr: "Consentements du copropriétaire 1 — cocher tous les énoncés"
+              v-if: "this.val('nombreCoproprietaires') === 'Un' || this.val('nombreCoproprietaires') === 'Deux' || this.val('nombreCoproprietaires') === 'Trois'"
+              options:
+                c1:
+                  fr: "Je consens à ce que le MSP vérifie mon adresse de résidence principale et l'historique de mes changements d'adresse par le numéro de permis de conduire à la Société de l'assurance automobile du Québec; mon adresse de résidence principale et le détail de mon revenu total auprès de Revenu Québec; ainsi que mon adresse et la composition de mon unité familiale auprès du MESS."
+                c2:
+                  fr: "Je consens à ce que le MSP vérifie toute somme reçue de programmes d'assistance financière mis en vigueur par des ministères et des organismes publics, notamment le MESS et la Société d'habitation du Québec, ainsi que toute aide reçue de la Croix-Rouge canadienne."
+                c3:
+                  fr: "Je consens à ce que le MSP utilise des renseignements personnels me concernant pour faire des vérifications auprès de toute compagnie d'assurance contribuant au traitement de la présente demande."
+                c4:
+                  fr: "Je consens à ce que le MSP utilise des renseignements personnels me concernant pour faire des vérifications auprès de tout fournisseur de services professionnels contribuant au traitement de la présente demande (entrepreneur, firme d'arpentage, firme d'ingénierie, firme de comptables)."
+                c5:
+                  fr: "Je consens à ce que le MSP utilise des renseignements personnels pour faire des vérifications auprès des autorités municipales ou régionales (MRC) contribuant au traitement de la présente demande."
+                c6:
+                  fr: "Je consens à ce que le MSP utilise des renseignements personnels me concernant pour faire des vérifications auprès de mon employeur, relativement aux pièces justificatives fournies."
+                c7:
+                  fr: "Je consens à ce que le MSP communique des renseignements personnels me concernant à une entreprise privée, à un ministère ou à un organisme public du Québec ou du Canada, dans le but de me donner accès à un service ou à un programme, s'il juge que ma situation le requiert."
+                c8:
+                  fr: "Je consens à ce que le MSP communique des renseignements personnels me concernant à mon syndic ou au Bureau du surintendant des faillites, si ma situation le requiert."
+                c9:
+                  fr: "En cas de transfert de ma résidence à un tiers (ex. : vente, cession) et d'une inondation subséquente, je consens à ce que le MSP communique au(x) nouveau(x) propriétaire(s) l'assistance financière versée pour les dommages en vertu de la présente demande."
+              validations:
+                min: 9
+            - type: checkbox
+              name: consentementsCoprop2
+              label:
+                fr: "Consentements du copropriétaire 2 — cocher tous les énoncés"
+              v-if: "this.val('nombreCoproprietaires') === 'Deux' || this.val('nombreCoproprietaires') === 'Trois'"
+              options:
+                c1:
+                  fr: "Je consens à ce que le MSP vérifie mon adresse de résidence principale et l'historique de mes changements d'adresse par le numéro de permis de conduire à la Société de l'assurance automobile du Québec; mon adresse de résidence principale et le détail de mon revenu total auprès de Revenu Québec; ainsi que mon adresse et la composition de mon unité familiale auprès du MESS."
+                c2:
+                  fr: "Je consens à ce que le MSP vérifie toute somme reçue de programmes d'assistance financière mis en vigueur par des ministères et des organismes publics, notamment le MESS et la Société d'habitation du Québec, ainsi que toute aide reçue de la Croix-Rouge canadienne."
+                c3:
+                  fr: "Je consens à ce que le MSP utilise des renseignements personnels me concernant pour faire des vérifications auprès de toute compagnie d'assurance contribuant au traitement de la présente demande."
+                c4:
+                  fr: "Je consens à ce que le MSP utilise des renseignements personnels me concernant pour faire des vérifications auprès de tout fournisseur de services professionnels contribuant au traitement de la présente demande (entrepreneur, firme d'arpentage, firme d'ingénierie, firme de comptables)."
+                c5:
+                  fr: "Je consens à ce que le MSP utilise des renseignements personnels pour faire des vérifications auprès des autorités municipales ou régionales (MRC) contribuant au traitement de la présente demande."
+                c6:
+                  fr: "Je consens à ce que le MSP utilise des renseignements personnels me concernant pour faire des vérifications auprès de mon employeur, relativement aux pièces justificatives fournies."
+                c7:
+                  fr: "Je consens à ce que le MSP communique des renseignements personnels me concernant à une entreprise privée, à un ministère ou à un organisme public du Québec ou du Canada, dans le but de me donner accès à un service ou à un programme, s'il juge que ma situation le requiert."
+                c8:
+                  fr: "Je consens à ce que le MSP communique des renseignements personnels me concernant à mon syndic ou au Bureau du surintendant des faillites, si ma situation le requiert."
+                c9:
+                  fr: "En cas de transfert de ma résidence à un tiers (ex. : vente, cession) et d'une inondation subséquente, je consens à ce que le MSP communique au(x) nouveau(x) propriétaire(s) l'assistance financière versée pour les dommages en vertu de la présente demande."
+              validations:
+                min: 9
+            - type: checkbox
+              name: consentementsCoprop3
+              label:
+                fr: "Consentements du copropriétaire 3 — cocher tous les énoncés"
+              v-if: "this.val('nombreCoproprietaires') === 'Trois'"
+              options:
+                c1:
+                  fr: "Je consens à ce que le MSP vérifie mon adresse de résidence principale et l'historique de mes changements d'adresse par le numéro de permis de conduire à la Société de l'assurance automobile du Québec; mon adresse de résidence principale et le détail de mon revenu total auprès de Revenu Québec; ainsi que mon adresse et la composition de mon unité familiale auprès du MESS."
+                c2:
+                  fr: "Je consens à ce que le MSP vérifie toute somme reçue de programmes d'assistance financière mis en vigueur par des ministères et des organismes publics, notamment le MESS et la Société d'habitation du Québec, ainsi que toute aide reçue de la Croix-Rouge canadienne."
+                c3:
+                  fr: "Je consens à ce que le MSP utilise des renseignements personnels me concernant pour faire des vérifications auprès de toute compagnie d'assurance contribuant au traitement de la présente demande."
+                c4:
+                  fr: "Je consens à ce que le MSP utilise des renseignements personnels me concernant pour faire des vérifications auprès de tout fournisseur de services professionnels contribuant au traitement de la présente demande (entrepreneur, firme d'arpentage, firme d'ingénierie, firme de comptables)."
+                c5:
+                  fr: "Je consens à ce que le MSP utilise des renseignements personnels pour faire des vérifications auprès des autorités municipales ou régionales (MRC) contribuant au traitement de la présente demande."
+                c6:
+                  fr: "Je consens à ce que le MSP utilise des renseignements personnels me concernant pour faire des vérifications auprès de mon employeur, relativement aux pièces justificatives fournies."
+                c7:
+                  fr: "Je consens à ce que le MSP communique des renseignements personnels me concernant à une entreprise privée, à un ministère ou à un organisme public du Québec ou du Canada, dans le but de me donner accès à un service ou à un programme, s'il juge que ma situation le requiert."
+                c8:
+                  fr: "Je consens à ce que le MSP communique des renseignements personnels me concernant à mon syndic ou au Bureau du surintendant des faillites, si ma situation le requiert."
+                c9:
+                  fr: "En cas de transfert de ma résidence à un tiers (ex. : vente, cession) et d'une inondation subséquente, je consens à ce que le MSP communique au(x) nouveau(x) propriétaire(s) l'assistance financière versée pour les dommages en vertu de la présente demande."
+              validations:
+                min: 9
+
+    # ─── Section 10 – Engagements et déclarations ────────────────────────────
+    - sectionGroup:
+        fr: "Engagements et déclarations"
+      classes: icone clipboard-check
+      sections:
+        - section:
+            fr: "10 – Engagements et déclarations du demandeur et des copropriétaires (obligatoires)"
+          id: sectionEngagements
+          cacherTexteExplicatifChampsObligatoires: true
+          components:
+            - type: avis
+              classes: information
+              text:
+                fr: "<p>Le demandeur et les copropriétaires occupants doivent consentir à chacun des énoncés de la présente section pour que le MSP puisse traiter la demande.</p>"
+            - type: checkbox
+              name: engagementsDemandeur
+              label:
+                fr: "Engagements du demandeur — cocher tous les énoncés"
+              options:
+                e1:
+                  fr: "Je m'engage à fournir au MSP tous les renseignements et les documents qu'il demande aux fins de l'administration du programme au plus tard le 30e jour suivant l'envoi d'une demande écrite à cet effet."
+                e2:
+                  fr: "Je m'engage à permettre au MSP d'examiner dans les meilleurs délais les lieux ou les biens concernés par le sinistre."
+                e3:
+                  fr: "Je m'engage à informer le MSP de tout changement dans ma situation susceptible d'influer sur mon admissibilité au programme ou sur l'assistance financière qui peut m'être accordée."
+                e4:
+                  fr: "Je comprends que le gouvernement du Québec est subrogé de plein droit jusqu'à concurrence des sommes qu'il a versées, dans tous mes droits et recours contre le tiers responsable du dommage ou de l'événement qui fait l'objet du programme."
+                e5:
+                  fr: "Je comprends que, si ma situation financière est précaire au moment du sinistre ou si j'éprouve des difficultés financières en raison du sinistre, je peux demander qu'une analyse soit effectuée afin de déterminer s'il est possible de réduire ou d'abolir la participation financière s'appliquant à la présente demande."
+                e6:
+                  fr: "Je comprends que si j'engage un entrepreneur pour effectuer des travaux nécessaires, je dois m'assurer que la licence qu'il possède a été délivrée par la Régie du bâtiment du Québec, qu'elle est toujours valide et qu'elle lui permet d'effectuer les travaux indiqués dans le constat de dommages."
+                e7:
+                  fr: "Je comprends que dans le cas où des travaux seraient effectués par un entrepreneur et que ce dernier ne posséderait pas la licence requise, le MSP pourrait récupérer en partie ou en totalité l'assistance financière versée, s'il y a lieu."
+                e8:
+                  fr: "Je comprends et j'accepte que si je ne respecte pas l'une des conditions du programme, le gouvernement pourra me réclamer la totalité ou une partie de l'assistance financière versée, s'il juge que la situation le requiert, et ce, solidairement avec l'autre ou les autres propriétaires qui ont reçu cette assistance."
+                e9:
+                  fr: "Je déclare que tous les renseignements fournis dans ce formulaire de réclamation sont véridiques et complets."
+              validations:
+                min: 9
+            - type: checkbox
+              name: engagementsCoprop1
+              label:
+                fr: "Engagements du copropriétaire 1 — cocher tous les énoncés"
+              v-if: "this.val('nombreCoproprietaires') === 'Un' || this.val('nombreCoproprietaires') === 'Deux' || this.val('nombreCoproprietaires') === 'Trois'"
+              options:
+                e1:
+                  fr: "Je m'engage à fournir au MSP tous les renseignements et les documents qu'il demande aux fins de l'administration du programme au plus tard le 30e jour suivant l'envoi d'une demande écrite à cet effet."
+                e2:
+                  fr: "Je m'engage à permettre au MSP d'examiner dans les meilleurs délais les lieux ou les biens concernés par le sinistre."
+                e3:
+                  fr: "Je m'engage à informer le MSP de tout changement dans ma situation susceptible d'influer sur mon admissibilité au programme ou sur l'assistance financière qui peut m'être accordée."
+                e4:
+                  fr: "Je comprends que le gouvernement du Québec est subrogé de plein droit jusqu'à concurrence des sommes qu'il a versées, dans tous mes droits et recours contre le tiers responsable du dommage ou de l'événement qui fait l'objet du programme."
+                e5:
+                  fr: "Je comprends que, si ma situation financière est précaire au moment du sinistre ou si j'éprouve des difficultés financières en raison du sinistre, je peux demander qu'une analyse soit effectuée afin de déterminer s'il est possible de réduire ou d'abolir la participation financière s'appliquant à la présente demande."
+                e6:
+                  fr: "Je comprends que si j'engage un entrepreneur pour effectuer des travaux nécessaires, je dois m'assurer que la licence qu'il possède a été délivrée par la Régie du bâtiment du Québec, qu'elle est toujours valide et qu'elle lui permet d'effectuer les travaux indiqués dans le constat de dommages."
+                e7:
+                  fr: "Je comprends que dans le cas où des travaux seraient effectués par un entrepreneur et que ce dernier ne posséderait pas la licence requise, le MSP pourrait récupérer en partie ou en totalité l'assistance financière versée, s'il y a lieu."
+                e8:
+                  fr: "Je comprends et j'accepte que si je ne respecte pas l'une des conditions du programme, le gouvernement pourra me réclamer la totalité ou une partie de l'assistance financière versée, s'il juge que la situation le requiert, et ce, solidairement avec l'autre ou les autres propriétaires qui ont reçu cette assistance."
+                e9:
+                  fr: "Je déclare que tous les renseignements fournis sont véridiques et complets."
+              validations:
+                min: 9
+            - type: checkbox
+              name: engagementsCoprop2
+              label:
+                fr: "Engagements du copropriétaire 2 — cocher tous les énoncés"
+              v-if: "this.val('nombreCoproprietaires') === 'Deux' || this.val('nombreCoproprietaires') === 'Trois'"
+              options:
+                e1:
+                  fr: "Je m'engage à fournir au MSP tous les renseignements et les documents qu'il demande aux fins de l'administration du programme au plus tard le 30e jour suivant l'envoi d'une demande écrite à cet effet."
+                e2:
+                  fr: "Je m'engage à permettre au MSP d'examiner dans les meilleurs délais les lieux ou les biens concernés par le sinistre."
+                e3:
+                  fr: "Je m'engage à informer le MSP de tout changement dans ma situation susceptible d'influer sur mon admissibilité au programme ou sur l'assistance financière qui peut m'être accordée."
+                e4:
+                  fr: "Je comprends que le gouvernement du Québec est subrogé de plein droit jusqu'à concurrence des sommes qu'il a versées, dans tous mes droits et recours contre le tiers responsable du dommage ou de l'événement qui fait l'objet du programme."
+                e5:
+                  fr: "Je comprends que, si ma situation financière est précaire au moment du sinistre ou si j'éprouve des difficultés financières en raison du sinistre, je peux demander qu'une analyse soit effectuée afin de déterminer s'il est possible de réduire ou d'abolir la participation financière s'appliquant à la présente demande."
+                e6:
+                  fr: "Je comprends que si j'engage un entrepreneur pour effectuer des travaux nécessaires, je dois m'assurer que la licence qu'il possède a été délivrée par la Régie du bâtiment du Québec, qu'elle est toujours valide et qu'elle lui permet d'effectuer les travaux indiqués dans le constat de dommages."
+                e7:
+                  fr: "Je comprends que dans le cas où des travaux seraient effectués par un entrepreneur et que ce dernier ne posséderait pas la licence requise, le MSP pourrait récupérer en partie ou en totalité l'assistance financière versée, s'il y a lieu."
+                e8:
+                  fr: "Je comprends et j'accepte que si je ne respecte pas l'une des conditions du programme, le gouvernement pourra me réclamer la totalité ou une partie de l'assistance financière versée, s'il juge que la situation le requiert, et ce, solidairement avec l'autre ou les autres propriétaires qui ont reçu cette assistance."
+                e9:
+                  fr: "Je déclare que tous les renseignements fournis sont véridiques et complets."
+              validations:
+                min: 9
+            - type: checkbox
+              name: engagementsCoprop3
+              label:
+                fr: "Engagements du copropriétaire 3 — cocher tous les énoncés"
+              v-if: "this.val('nombreCoproprietaires') === 'Trois'"
+              options:
+                e1:
+                  fr: "Je m'engage à fournir au MSP tous les renseignements et les documents qu'il demande aux fins de l'administration du programme au plus tard le 30e jour suivant l'envoi d'une demande écrite à cet effet."
+                e2:
+                  fr: "Je m'engage à permettre au MSP d'examiner dans les meilleurs délais les lieux ou les biens concernés par le sinistre."
+                e3:
+                  fr: "Je m'engage à informer le MSP de tout changement dans ma situation susceptible d'influer sur mon admissibilité au programme ou sur l'assistance financière qui peut m'être accordée."
+                e4:
+                  fr: "Je comprends que le gouvernement du Québec est subrogé de plein droit jusqu'à concurrence des sommes qu'il a versées, dans tous mes droits et recours contre le tiers responsable du dommage ou de l'événement qui fait l'objet du programme."
+                e5:
+                  fr: "Je comprends que, si ma situation financière est précaire au moment du sinistre ou si j'éprouve des difficultés financières en raison du sinistre, je peux demander qu'une analyse soit effectuée afin de déterminer s'il est possible de réduire ou d'abolir la participation financière s'appliquant à la présente demande."
+                e6:
+                  fr: "Je comprends que si j'engage un entrepreneur pour effectuer des travaux nécessaires, je dois m'assurer que la licence qu'il possède a été délivrée par la Régie du bâtiment du Québec, qu'elle est toujours valide et qu'elle lui permet d'effectuer les travaux indiqués dans le constat de dommages."
+                e7:
+                  fr: "Je comprends que dans le cas où des travaux seraient effectués par un entrepreneur et que ce dernier ne posséderait pas la licence requise, le MSP pourrait récupérer en partie ou en totalité l'assistance financière versée, s'il y a lieu."
+                e8:
+                  fr: "Je comprends et j'accepte que si je ne respecte pas l'une des conditions du programme, le gouvernement pourra me réclamer la totalité ou une partie de l'assistance financière versée, s'il juge que la situation le requiert, et ce, solidairement avec l'autre ou les autres propriétaires qui ont reçu cette assistance."
+                e9:
+                  fr: "Je déclare que tous les renseignements fournis sont véridiques et complets."
+              validations:
+                min: 9
+
+    # ─── Confirmation et révision ─────────────────────────────────────────────
+    - sectionGroup:
+        fr: "Confirmation et transmission"
+      classes: icone clipboard-check
+      sections:
+        - section:
+            fr: "Documents complémentaires"
+          id: sectionDocsComplementaires
+          cacherTexteExplicatifChampsObligatoires: true
+          components:
+            - type: customfileUlterieure
+              name: docSpecimenCheque
+              label:
+                fr: "Spécimen de chèque (pour le dépôt direct, si disponible)"
+        - section:
+            fr: Confirmation
+          id: sectionConfirmation
+          cacherTexteExplicatifChampsObligatoires: true
+          components:
+            - type: avis
+              classes: information
+              text:
+                fr: |
+                  <p>En transmettant ce formulaire électroniquement, le demandeur et les copropriétaires confirment avoir pris connaissance des sections 9 (Consentements) et 10 (Engagements et déclarations) et y avoir consenti.</p>
+                  <p>La transmission électronique du formulaire tient lieu de signature conformément aux conditions acceptées ci-dessus.</p>
+                  <p><strong>Rappel :</strong> La demande d'assistance financière doit être expédiée dans les <strong>12 mois</strong> suivant la date de la mise en œuvre du programme. Consultez <a href="https://www.quebec.ca/sinistresadmissibles">www.quebec.ca/sinistresadmissibles</a> pour vérifier la date limite.</p>
+        - section:
+            fr: Révision
+          id: revision
+          cacherTexteExplicatifChampsObligatoires: true
+          components:
+            - type: dynamic
+              tag: div
+              v-if: "this.val('EtatRevision') === 'initial'"
+              classes: texte-revision
+              text:
+                fr: |
+                  Cliquez sur le bouton « Valider » afin de vérifier que le formulaire est rempli correctement avant de le transmettre.
+            - type: dynamic
+              tag: div
+              v-if: "this.val('EtatRevision') === 'sans-erreur'"
+              classes: texte-revision
+              text:
+                fr: Tout est en ordre ! Vous pouvez transmettre votre demande de réclamation.
+            - type: dynamic
+              tag: div
+              v-if: "this.val('EtatRevision') === 'avec-erreur'"
+              classes: texte-revision
+              text:
+                fr: |
+                  Des erreurs ont été détectées. Veuillez les corriger avant de transmettre votre formulaire.
