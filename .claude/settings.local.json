@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(dir \"c:/Users/cotda05/FRW/\")"
+      "Bash(dir \"c:/Users/cotda05/FRW/\")",
+      "Bash(code --version)"
     ]
   }
 }

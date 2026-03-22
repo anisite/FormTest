@@ -162,3 +162,4 @@ objet: Confirmation : demande
 - Oublier `toujoursProduire: true` sur un gabarit informatif → document non produit
 - Écrire `validation:` au lieu de `validations:` → les règles sont ignorées silencieusement
 - Ne pas quoter une string avec `:` → parsing YAML cassé
+- Oublier la section `revision` en fin de formulaire → bouton de soumission absent ou mal géré

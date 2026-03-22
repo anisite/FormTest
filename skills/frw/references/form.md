@@ -10,6 +10,7 @@
 7. [Aiguillage](#7-aiguillage)
 8. [JavaScript injecté](#8-javascript-injecté)
 9. [Workflows — filtreEtapes et courrielWorkflow](#9-workflows--filtreetapes-et-courrielworkflow)
+10. [Section Révision (obligatoire)](#10-section-révision-obligatoire)
 
 ---
 
@@ -77,7 +78,7 @@ form:
         en: Group name
       classes: icone user            # Icône du groupe (voir liste ci-dessous)
       v-if: "this.val('champ') === 'val'"   # Condition d'affichage Vue.js
-      prefixId: prefixe              # Préfixe ajouté aux ID des composants du groupe
+      prefixId: prefixe              # Préfixe ajouté aux sections à répéter avec une ancre
       filtreEtapes:                  # Workflow : étapes où ce groupe est visible
         - initial:
         - contribution:
@@ -734,3 +735,81 @@ form:
                 fr: Courriel du locataire
                 en: Tenant's email
 ```
+
+---
+
+## 10. Section Révision (obligatoire)
+
+La section de révision est **toujours la dernière section** d'un formulaire FRW. Elle affiche un message contextuel selon l'état de validation et permet à l'utilisateur de soumettre le formulaire.
+
+### Structure complète
+
+```yaml
+- section:
+    fr: Révision
+    en: Revision
+  id: revision
+  cacherTexteExplicatifChampsObligatoires: true
+  components:
+    # État 1 — Formulaire jamais validé (état initial)
+    - type: dynamic
+      tag: div
+      v-if: "val('EtatRevision') === 'initial'"
+      classes: texte-revision
+      text:
+        fr: |
+          Si vous n'avez pas peur, cliquez sur le bouton « Valider » afin de vérifier
+          que le formulaire est rempli correctement.
+
+    # État 2 — Validation réussie, aucune erreur
+    - type: dynamic
+      tag: div
+      v-if: "val('EtatRevision') === 'sans-erreur'"
+      classes: texte-revision
+      text:
+        fr: Tout est beau! Vous pouvez soumettre votre formulaire!
+
+    # État 3 — Validation échouée, des erreurs sont présentes
+    - type: dynamic
+      tag: div
+      v-if: "val('EtatRevision') === 'avec-erreur'"
+      classes: texte-revision
+      text:
+        fr: |
+          Des erreurs ont été détectées. Veuillez les corriger avant de soumettre
+          votre formulaire.
+```
+
+### Propriétés de la section
+
+| Propriété | Valeur | Obligatoire | Notes |
+|---|---|---|---|
+| `id` | `revision` | ✅ | Convention standard FRW — ne pas modifier |
+| `cacherTexteExplicatifChampsObligatoires` | `true` | ✅ | Supprime le texte générique « * champ obligatoire » |
+| `section.fr` | `Révision` | ✅ | Label affiché dans la navigation |
+| `section.en` | `Revision` | — | Seulement si bilinguisme requis |
+
+### États de `EtatRevision`
+
+| Valeur | Quand | Rôle |
+|---|---|---|
+| `initial` | Chargement du formulaire, avant toute validation | Invite l'utilisateur à cliquer sur « Valider » |
+| `sans-erreur` | Après validation sans aucune erreur | Autorise la soumission |
+| `avec-erreur` | Après validation avec au moins une erreur | Invite à corriger avant de soumettre |
+
+FRW gère automatiquement la transition entre ces états via son moteur de validation — **ne pas gérer `EtatRevision` manuellement**.
+
+### Règles
+
+- La section ne doit contenir **aucun composant interactif** (`text`, `radio`, `checkbox`, etc.) — uniquement des blocs `dynamic`.
+- `v-if` utilise `val('EtatRevision')` — vérifier la version FRW cible (certaines versions requièrent `this.val()`).
+- `classes: texte-revision` applique le style CSS standard de FRW pour ces messages — ne pas ometre.
+
+### Erreurs fréquentes
+
+| Erreur | Symptôme |
+|---|---|
+| `id` manquant ou différent de `revision` | Bouton de soumission absent ou mal positionné |
+| `cacherTexteExplicatifChampsObligatoires` absent | Texte parasite « * champ obligatoire » affiché |
+| Champs interactifs dans la section | Comportement de validation indéfini |
+| Section pas en dernière position | Navigation incorrecte, soumission impossible |

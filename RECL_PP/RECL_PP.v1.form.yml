@@ -1,10 +1,11 @@
 # yaml-language-server: $schema=https://formulaires.it.mtess.gouv.qc.ca/api/v1/SIS/ObtenirSchema/form
+# debug: langue=auto, showAll=true
 
 config:
   securite:
     accesAnonyme: true
-  formulaireUnilingue: true
-  confirmationTransmission:
+  formulaireUnilingue: true  
+  confirmationTransmission: 
     texteSupplementaire:
       fr: |
         <p>Votre demande de réclamation a été transmise avec succès. Conservez votre numéro de confirmation.</p>
@@ -77,8 +78,6 @@ form:
               name: dateSinistre
               label:
                 fr: Date du sinistre
-              infobulle:
-                fr: "Lors d'une inondation, la date du sinistre correspond généralement à la date où l'eau a commencé à s'accumuler sur votre terrain ou dans votre résidence."
               max: "{{today}}"
             - type: checkbox
               name: typeSinistre
@@ -95,13 +94,25 @@ form:
                   fr: Verglas
                 Autre:
                   fr: Autre
-              validations:
-                minimum: 1
             - type: text
               name: typeSinistreAutre
               label:
                 fr: "Précisez le type de sinistre"
               v-if: "this.val('typeSinistre') && this.val('typeSinistre').includes('Autre')"
+            - type: radio
+              name: etatFondation
+              label:
+                fr: "État de la fondation"
+              v-if: "this.val('typeSinistre') && this.val('typeSinistre').includes('TrembTerre')"
+              options:
+                BonEtat:
+                  fr: "Bon état, aucun dommage visible"
+                DommagesMineurs:
+                  fr: "Dommages mineurs (fissures superficielles)"
+                DommagesMajeurs:
+                  fr: "Dommages majeurs (fissures structurales, affaissement)"
+                NonVerifie:
+                  fr: "Non vérifié"
 
     # ─── Section 1 – Identité du demandeur ───────────────────────────────────
     - sectionGroup:
@@ -274,20 +285,14 @@ form:
                 fr: "Joindre la police d'assurance habitation (y compris avenants et exclusions)"
               v-if: "this.val('assuranceHabitation') === 'true'"
               validations:
-                mime:
-                  - application/pdf
-                  - image/jpeg
-                  - image/png
+                mime: application/pdf,image/jpeg,image/png
             - type: customfile
               name: reponseAssureur
               label:
                 fr: "Joindre la réponse écrite de votre assureur pour la couverture du sinistre"
               v-if: "this.val('assuranceHabitation') === 'true'"
               validations:
-                mime:
-                  - application/pdf
-                  - image/jpeg
-                  - image/png
+                mime: application/pdf,image/jpeg,image/png
 
     # ─── Section 4 – Faillite ────────────────────────────────────────────────
     - sectionGroup:
@@ -335,8 +340,6 @@ form:
               label:
                 fr: Montant de l'indemnisation de votre assureur
               v-if: "this.val('indemnisationAssureur') === 'true'"
-              infobulle:
-                fr: Veuillez fournir une copie du règlement de votre assureur.
             - type: radio
               name: indemnisationBienfaisance
               label:
@@ -560,8 +563,6 @@ form:
                   fr: Infiltration par le plancher
                 Autre:
                   fr: Autre
-              validations:
-                minimum: 1
             - type: dynamic
               tag: p
               text:
@@ -1802,8 +1803,6 @@ form:
               name: bm_alimentsEssentiels
               label:
                 fr: "Aliments essentiels, produits ménagers et personnels* (600 $ pour le 1er occupant + 100 $ par occupant supplémentaire)"
-              infobulle:
-                fr: Calculez le total selon le nombre d'occupants permanents de votre résidence.
               validations:
                 optional:
             - type: inline
@@ -1922,8 +1921,6 @@ form:
                   fr: "Installation ou surveillance de pompe(s)"
                 Autre:
                   fr: Autre mesure
-              validations:
-                minimum: 1
             - type: text
               name: autresMesuresDetail
               label:
@@ -2102,51 +2099,34 @@ form:
               label:
                 fr: "Preuve d'adresse de résidence en vigueur au moment du sinistre (permis de conduire, bulletin scolaire, avis de cotisation, etc.)"
               validations:
-                mime:
-                  - application/pdf
-                  - image/jpeg
-                  - image/png
+                mime: application/pdf,image/jpeg,image/png
             - type: customfile
               name: avisEvaluationMunicipale
               label:
                 fr: "Copie de l'avis d'évaluation municipale de la résidence en vigueur au moment du sinistre"
               validations:
-                mime:
-                  - application/pdf
-                  - image/jpeg
-                  - image/png
+                mime: application/pdf,image/jpeg,image/png
             - type: customfile
               name: photosVideos
               label:
                 fr: Photographies et vidéos des dommages (si possible)
               validations:
                 optional:
-                mime:
-                  - application/pdf
-                  - image/jpeg
-                  - image/png
-                  - video/mp4
-                  - video/quicktime
+                mime: application/pdf,image/jpeg,image/png,video/mp4,video/quicktime
             - type: customfile
               name: specimenCheque
               label:
                 fr: Spécimen de chèque (si possible)
               validations:
                 optional:
-                mime:
-                  - application/pdf
-                  - image/jpeg
-                  - image/png
+                mime: application/pdf,image/jpeg,image/png
             - type: customfile
               name: facturesEstimations
               label:
                 fr: "Factures ou estimations pour la réparation ou le remplacement des biens endommagés (si disponibles)"
               validations:
                 optional:
-                mime:
-                  - application/pdf
-                  - image/jpeg
-                  - image/png
+                mime: application/pdf,image/jpeg,image/png
 
     # ─── Section 9 – Consentements ────────────────────────────────────────────
     - sectionGroup:
@@ -2186,7 +2166,7 @@ form:
                 c9:
                   fr: "En cas de transfert de ma résidence à un tiers, je consens à ce que le MSP communique aux nouveaux propriétaires l'assistance financière versée pour les dommages en vertu de la présente demande."
               validations:
-                minimum: 9
+                min: 9
             - type: checkbox
               name: consentementsCoprop1
               label:
@@ -2212,7 +2192,7 @@ form:
                 c9:
                   fr: "En cas de transfert de ma résidence à un tiers, je consens à ce que le MSP communique aux nouveaux propriétaires l'assistance financière versée."
               validations:
-                minimum: 9
+                min: 9
             - type: checkbox
               name: consentementsCoprop2
               label:
@@ -2238,7 +2218,7 @@ form:
                 c9:
                   fr: "En cas de transfert de ma résidence à un tiers, je consens à ce que le MSP communique aux nouveaux propriétaires l'assistance financière versée."
               validations:
-                minimum: 9
+                min: 9
             - type: checkbox
               name: consentementsCoprop3
               label:
@@ -2264,7 +2244,7 @@ form:
                 c9:
                   fr: "En cas de transfert de ma résidence à un tiers, je consens à ce que le MSP communique aux nouveaux propriétaires l'assistance financière versée."
               validations:
-                minimum: 9
+                min: 9
 
     # ─── Section 10 – Engagements ─────────────────────────────────────────────
     - sectionGroup:
@@ -2300,7 +2280,7 @@ form:
                 e9:
                   fr: "Je déclare que tous les renseignements fournis dans ce formulaire de réclamation sont véridiques et complets."
               validations:
-                minimum: 9
+                min: 9
             - type: checkbox
               name: engagementsCoprop1
               label:
@@ -2326,7 +2306,7 @@ form:
                 e9:
                   fr: "Je déclare que tous les renseignements fournis sont véridiques et complets."
               validations:
-                minimum: 9
+                min: 9
             - type: checkbox
               name: engagementsCoprop2
               label:
@@ -2352,7 +2332,7 @@ form:
                 e9:
                   fr: "Je déclare que tous les renseignements fournis sont véridiques et complets."
               validations:
-                minimum: 9
+                min: 9
             - type: checkbox
               name: engagementsCoprop3
               label:
@@ -2378,7 +2358,7 @@ form:
                 e9:
                   fr: "Je déclare que tous les renseignements fournis sont véridiques et complets."
               validations:
-                minimum: 9
+                min: 9
 
     # ─── Section 11 – Confirmation de transmission ───────────────────────────
     - sectionGroup:
@@ -2396,3 +2376,28 @@ form:
                   <p>En transmettant ce formulaire électroniquement, le demandeur et les copropriétaires confirment avoir pris connaissance des sections 9 (Consentements) et 10 (Engagements et déclarations) et y avoir consenti.</p>
                   <p>La transmission électronique du formulaire tient lieu de signature conformément aux conditions acceptées ci-dessus.</p>
                   <p><strong>Rappel :</strong> La demande d'assistance financière doit être expédiée dans les <strong>12 mois</strong> suivant la date de la mise en œuvre du programme. Consultez <a href="https://www.quebec.ca/sinistresadmissibles">www.quebec.ca/sinistresadmissibles</a> pour vérifier la date limite.</p>
+        - section:
+            fr: Révision
+          id: revision
+          cacherTexteExplicatifChampsObligatoires: true
+          components:
+            - type: dynamic
+              tag: div
+              v-if: "this.val('EtatRevision') === 'initial'"
+              classes: texte-revision
+              text:
+                fr: |
+                  Cliquez sur le bouton « Valider » afin de vérifier que le formulaire est rempli correctement avant de le transmettre.
+            - type: dynamic
+              tag: div
+              v-if: "this.val('EtatRevision') === 'sans-erreur'"
+              classes: texte-revision
+              text:
+                fr: Tout est en ordre ! Vous pouvez transmettre votre formulaire.
+            - type: dynamic
+              tag: div
+              v-if: "this.val('EtatRevision') === 'avec-erreur'"
+              classes: texte-revision
+              text:
+                fr: |
+                  Des erreurs ont été détectées. Veuillez les corriger avant de transmettre votre formulaire.
