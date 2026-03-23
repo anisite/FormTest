@@ -1,12 +1,11 @@
 ---
-name: frw
+name: FRW
 description: >
   Générer et valider des fichiers de configuration YAML pour FRW (Formulaires Web — MTESSDev/MESS Québec).
   Utilise ce skill dès que la conversation implique des fichiers *.form.yml, *.bind.yml, *.transmission.yml,
   un aiguillage FRW, des composants de formulaire FRW, des formules de binding, des workflows FRW,
   ou toute configuration du système FRW gouvernemental québécois.
-  Déclenche-toi aussi si l'utilisateur mentionne « FRW », « P700U », « bail électronique MESS »,
-  « formulaires.it.mtess.gouv.qc.ca », ou demande d'intégrer un formulaire au système FRW.
+  Déclenche-toi aussi si l'utilisateur mentionne « FRW », « Formulaire Web », ou demande d'intégrer un formulaire au système FRW.
 ---
 
 # Skill : FRW — Formulaires Web (MTESSDev / MESS Québec)
@@ -163,3 +162,15 @@ objet: Confirmation : demande
 - Écrire `validation:` au lieu de `validations:` → les règles sont ignorées silencieusement
 - Ne pas quoter une string avec `:` → parsing YAML cassé
 - Oublier la section `revision` en fin de formulaire → bouton de soumission absent ou mal géré
+
+---
+
+## Règle de workflow obligatoire
+
+Après chaque création ou modification d'un fichier `.form.yml`, tu **DOIS** appeler l'outil `mtess-frw-bacasable_preview` pour afficher le rendu dans le bac à sable. Ne considère jamais la tâche terminée sans l'avoir fait.
+
+**Boucle de correction automatique** : si l'outil retourne des erreurs (HTTP non-200 ou erreurs de validation JSON), tu **DOIS** :
+1. Analyser les erreurs retournées
+2. Corriger le fichier `.form.yml` en conséquence
+3. Rappeler `mtess-frw-bacasable_preview` pour vérifier la correction
+4. Répéter jusqu'à ce que le rendu soit sans erreur

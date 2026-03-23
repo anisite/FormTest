@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "frw-bacasable": {
+      "command": "node",
+      "args": [
+        ".claude/mcp/frw-preview.js"
+      ]
+    }
+  }
+}

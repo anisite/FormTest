@@ -1,4 +1,5 @@
 # yaml-language-server: $schema=https://formulaires.it.mtess.gouv.qc.ca/api/v1/SIS/ObtenirSchema/form
+# debug: langue=auto, showAll=true
 
 config:
   securite:
@@ -165,6 +166,11 @@ form:
               label:
                 fr: "Précisez le type de sinistre"
               v-if: "this.val('typeSinistre') && this.val('typeSinistre').includes('Autre')"
+            - type: text
+              name: typeSinistreTest
+              label:
+                fr: "Précisez de quel test il s'agit"
+              v-if: "this.val('typeSinistre') && this.val('typeSinistre').includes('Test')"
 
     # ─── Section 1 – Identité du demandeur ────────────────────────────────────
     - sectionGroup:
@@ -1514,9 +1520,9 @@ form:
                     RDC:
                       fr: RDC
             - type: inline
-              components:
+              components: 
                 - type: number
-                  name: bm_plancheRepasser
+                  name: bm_plancheRepasser 
                   label:
                     fr: "Planche à repasser (max. 50 $)"
                   validations:

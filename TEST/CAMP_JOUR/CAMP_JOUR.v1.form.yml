@@ -45,6 +45,16 @@ form:
                   fr: Masculin
                 A:
                   fr: Autre / Non précisé
+            - type: radio
+              name: enfantHabiteAvecDeuxParents
+              label:
+                fr: "L'enfant habite-t-il avec ses deux parents?"
+              options: yesno
+            - type: text
+              name: enfantHabiteAvecQui
+              label:
+                fr: "Si non, avec qui habite-t-il?"
+              v-if: "this.val('enfantHabiteAvecDeuxParents') === 'false'"
             - type: text
               name: enfantAllergies
               label:

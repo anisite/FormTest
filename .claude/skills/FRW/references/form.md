@@ -14,6 +14,11 @@
 
 ---
 
+> **Convention de nommage** : Les attributs `id` (sections) et `name` (composants) doivent toujours être en **camelCase**.
+> Exemples : `id: coordonneesPersonnelles`, `name: dateNaissance`, `name: revenuAnnuel`.
+
+---
+
 ## 1. Bloc `config`
 
 ```yaml
@@ -210,10 +215,12 @@ form:
     fr: Nom de famille
     en: Last name
   inputmode: text           # text | numeric | email | tel | url | search
-  max: 100                  # Longueur maximale
   pattern: "[A-Za-z]+"     # Regex de validation
   value: "valeur par défaut"
   v-else-value: "valeur si v-if est faux"
+  validations: 
+    min: 2,length   # texte d'une longeur minimale de 2 caractères
+    max: 5,length   # texte d'une longeur maximal de 5 caractères
 ```
 
 ### `textarea` — Zone de texte multiligne
@@ -223,8 +230,12 @@ form:
   label:
     fr: Description
     en: Description
-  max: 500
-  limit: true               # Affiche compteur de caractères
+  validations: 
+    max: 200    # limite de caractères validée
+  additionals:
+    max-caracteres: 200   # compteur de caractères restants
+    hauteur-automatique: true  # permet de mettre une zone flexible
+    rows: 10   # quand le contenu utilisateur attendu est grand on précise le nombre de lignes
 ```
 
 ### `radio` — Boutons radio
@@ -275,11 +286,9 @@ form:
   name: dateNaissance
   label:
     fr: Date de naissance
-  min: "1900-01-01"
-  max: "{{today}}"
   validations:
-    avant: "2020-01-01"   # La date doit être avant cette date
-    apres: "1900-01-01"   # La date doit être après cette date
+    before: "2020-01-01"   # La date doit être avant cette date, laisser vide pour date du jour
+    after: "1900-01-01"   # La date doit être après cette date, laisser vide pour date du jour
   # Ne pas ajouter "date:" dans validations — la validation de format est gérée par le composant
 ```
 
@@ -393,7 +402,9 @@ form:
     en: Attachment
   validations:
     mime: application/pdf,image/jpeg,image/png
-  max: 5242880              # Taille max en octets (5 Mo)
+    max: 2   # max de fichiers dans le document 
+  additionals:
+    multiple: true   # ajouter plusieurs fichiers d'un même document             
   # Métadonnées (récupérées dans transmission)
   # Ajouter des champs dans le même groupe pour créer des métadonnées auto
 ```
@@ -404,7 +415,8 @@ form:
   name: documentUlterieur
   label:
     fr: Document à fournir ultérieurement
-    en: Document to provide later
+    en: Document to provide late
+  # même attributs que le customfile
 ```
 
 ### `infosBancaires` — Dépôt direct
@@ -540,9 +552,8 @@ validations:
   startsWith: "prefix"                  # Commence par
   endsWith: "suffix"                    # Finit par
   matches: autreChamp                   # Doit correspondre à un autre champ (confirmation)
-  before: "2025-12-31"                  # Date avant (pour type: date)
-  after: "2000-01-01"                   # Date après (pour type: date)
-  avant: "autreChampDate"               # Avant la valeur d'un autre champ date
+  before: "2025-12-31"                  # Date avant (pour type: date), ou aucune date pour celle du jour
+  after: "2000-01-01"                   # Date après (pour type: date), ou aucune date pour celle du jour
   accepted:                             # Doit être coché (checkbox)
   bail:                                 # Arrêter à la première erreur
   mime: application/pdf               # Types MIME autorisés (customfile), ne pas mettre sauf si demande explicite de l'utilisateur
@@ -553,6 +564,82 @@ validations:
       (value) {
         return value.length > 3 || 'Minimum 4 caractères';
       }
+```
+
+### `comparerChamps` — Comparaison entre deux champs
+
+Compare la valeur du champ validé à celle d'un autre champ selon un opérateur. Appliquer la validation sur le champ saisi **en dernier**.
+
+**Opérateurs disponibles :** `egal`, `different`, `plusPetit`, `plusPetitEgal`, `plusGrand`, `plusGrandEgal`
+
+**Syntaxe selon le contexte :**
+
+| Contexte | Valeur |
+|---|---|
+| Champ à la racine | `operateur,nomDuChamp` |
+| Champ dans un groupe | `operateur,nomDuGroupe.nomDuChamp` |
+| Champ avec `prefixId` | `operateur,prefixId$nomDuChamp` |
+| Groupe avec `prefixId` | `operateur,prefixId$nomDuGroupe.nomDuChamp` |
+
+#### Exemple — Champs à la racine
+```yaml
+- type: inline
+  components:
+    - name: dateDebut
+      type: date
+      label:
+        fr: Date de début
+    - name: dateFin
+      type: date
+      label:
+        fr: Date de fin
+      validations:
+        comparerChamps: plusGrandEgal,dateDebut
+
+- type: inline
+  components:
+    - name: nombre1
+      type: nombreEntier
+      label:
+        fr: Nombre 1
+    - name: nombre2
+      type: nombreEntier
+      label:
+        fr: Nombre 2
+      validations:
+        comparerChamps: different,nombre1
+```
+
+#### Exemple — Champs dans un groupe répétable
+```yaml
+- type: repeatableGroup
+  name: plageDates
+  repeatable: true
+  label:
+    fr: Éléments
+  components:
+    - type: inline
+      components:
+        - name: dateDebut
+          type: date
+          label:
+            fr: Date de début
+        - name: dateFin
+          type: date
+          label:
+            fr: Date de fin
+          validations:
+            comparerChamps: plusGrand,plageDates.dateDebut
+    - name: nombre1
+      type: nombreEntier
+      label:
+        fr: Nombre 1
+    - name: nombre2
+      type: nombreEntier
+      label:
+        fr: Nombre 2
+      validations:
+        comparerChamps: plusPetit,plageDates.nombre1
 ```
 
 ### Messages de validation personnalisés
